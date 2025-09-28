@@ -1,4 +1,0 @@
-
-User-agent: *
-
-Sitemap: https://wayfare-nextjs.vercel.app/sitemap.xml
