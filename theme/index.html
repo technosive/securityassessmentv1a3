@@ -1,0 +1,2941 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | Wayfare</title>
+    <meta name="description"
+        content="Discover amazing destinations, exclusive travel deals, and effortless booking. Plan your perfect vacation and explore the world with ease!" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Home | Wayfare" />
+    <meta property="og:description"
+        content="Discover amazing destinations, exclusive travel deals, and effortless booking. Plan your perfect vacation and explore the world with ease!" />
+    <meta property="og:url" content="https://wayfare-html.vercel.app/" />
+    <meta property="og:image" content="https://wayfare-html.vercel.app/assets/images/logo.png" />
+    <!-- Twitter Card Tags -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:site" content="@wayfare" />
+    <meta property="twitter:title" content="Home | Wayfare" />
+    <meta property="twitter:description"
+        content="Discover amazing destinations, exclusive travel deals, and effortless booking. Plan your perfect vacation and explore the world with ease!" />
+    <meta property="twitter:image" content="https://wayfare-html.vercel.app/assets/images/logo.png" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://wayfare-html.vercel.app/" />
+    <link rel="icon" type="icon" href="assets/images/favicon.png" />
+    <link rel="stylesheet" href="assets/css/flatpickr.min.css" />
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body x-data="mainContent"
+    class="font-switzer text-gray flex min-h-screen flex-col bg-white text-base/5.5 font-normal antialiased">
+    <div class="relative" x-data="{ isLoading: true }" x-init="setTimeout(() => {isLoading = false }, 1500)">
+        <div id="preloader" x-show="isLoading"
+            class="fixed inset-0 z-60 flex h-dvh w-full items-center justify-center bg-white">
+            <span
+                class="absolute inset-0 bg-[radial-gradient(50%_190.38%_at_55.72%_50%,rgba(0,117,149,0.1)_0%,rgba(255,255,255,0.1)_100%)]"></span>
+            <img src="assets/images/loader.gif" alt="Loader" class="h-auto w-16 lg:w-24" />
+        </div>
+    </div>
+
+    <header x-data="{
+            isScrolled: false,
+            checkScroll() {
+                this.isScrolled = this.$el.getBoundingClientRect().top === 0 && window.scrollY > 0;
+            }
+        }" @scroll.window="checkScroll()" :class="{'  pt-0! bg-white xl:backdrop-blur-xl shadow-md': isScrolled}"
+        class="fixed inset-x-0 z-50 pt-3 duration-300 lg:pt-10">
+        <div class="overlay fixed inset-0 z-40 hidden bg-white/10 backdrop-blur-md"
+            :class="{ 'block': showHeaderMenu, 'hidden': !showHeaderMenu }" @click="showHeaderMenu = false"></div>
+        <div class="container flex items-center justify-between gap-5 py-2.5">
+            <a href="/" class="inline-flex shrink-0">
+                <img :src="isScrolled ? 'assets/images/logo-black.svg' : 'assets/images/logo.svg'" alt="logo"
+                    class="h-8 w-auto sm:h-9.5" />
+            </a>
+            <div class="fixed top-0 -right-full z-50 flex h-screen w-80 flex-col gap-0 overflow-x-hidden overflow-y-auto bg-white/70 pb-5 shadow-sm backdrop-blur-xs transition-all duration-500 xl:static xl:right-auto xl:h-auto xl:w-auto xl:flex-row xl:items-center xl:overflow-hidden xl:bg-transparent xl:p-0 xl:shadow-none xl:backdrop-blur-none"
+                :class="{ 'right-0' : showHeaderMenu}">
+                <div
+                    class="sticky top-0 z-50 flex shrink-0 justify-between bg-white p-5 shadow-2xs backdrop-blur-xs xl:hidden xl:p-0">
+                    <a href="/" class="inline-flex">
+                        <img src="/assets/images/logo-black.svg" alt="logo" class="h-8.5 w-auto" />
+                    </a>
+                    <button type="button" class="group cursor-pointer text-black transition hover:opacity-70"
+                        @click="showHeaderMenu = false">
+                        <span data-lucide="X" class="size-5 shrink-0"></span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                </div>
+                <ul class="flex flex-col justify-center gap-2 p-5 xl:flex-row xl:items-center xl:rounded-full xl:bg-white/30 xl:px-2 xl:py-2.5 xl:backdrop-blur-xs"
+                    :class="{'xl:bg-transparent! xl:backdrop-blur-none! menu': isScrolled}">
+                    <li>
+                        <a href="/" class="nav-links active">Home</a>
+                    </li>
+                    <li>
+                        <a href="/destination.html" class="nav-links">
+                            Destination
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/experiences.html" class="nav-links">
+                            Experiences
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/tours-packages.html" class="nav-links">
+                            Tours & Packages
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/about-us.html" class="nav-links">About</a>
+                    </li>
+                    <li>
+                        <a href="/blog.html" class="nav-links">Blog</a>
+                    </li>
+                    <li>
+                        <a href="/contact-us.html" class="nav-links">
+                            Contact
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/faqs.html" class="nav-links">FAQs</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="flex items-center gap-2.5">
+                <a href="/sign-in.html" :class="{'btn-primary': isScrolled}" class="btn">
+                    Login
+                    <i data-lucide="move-up-right"></i>
+                </a>
+                <button type="button" class="group cursor-pointer text-white transition hover:opacity-70 xl:hidden"
+                    @click="showHeaderMenu = !showHeaderMenu" :class="{'text-black!': isScrolled}">
+                    <span data-lucide="menu" class="size-6 shrink-0"></span>
+                    <span class="sr-only">Menu</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="grow">
+        <div class="relative">
+            <div class="swiper Hero-swiper absolute! inset-0">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide relative!">
+                        <img src="assets/images/hero-banner1.jpg" alt="hero-banner"
+                            class="h-full w-full object-cover" />
+                        <span class="absolute inset-0 z-2 bg-gradient-to-b from-[#013248]/50 to-transparent"></span>
+                        <span class="from-blue to-blue/20 absolute inset-0 z-2 bg-gradient-to-t"></span>
+                        <div class="absolute! inset-0 container">
+                            <div
+                                class="vertical-text absolute top-24 left-1/2 z-30 -translate-x-1/2 bg-gradient-to-b from-white to-transparent bg-clip-text text-4xl text-transparent sm:top-22 sm:text-5xl lg:top-1/2 lg:-right-12 lg:left-auto lg:-translate-x-0 lg:-translate-y-1/2 lg:bg-gradient-to-r lg:text-6xl/16 xl:text-[80px]/16">
+                                Switzerland
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide relative!">
+                        <img src="assets/images/hero-banner2.jpg" alt="hero-banner"
+                            class="h-full w-full object-cover" />
+                        <span class="absolute inset-0 z-2 bg-gradient-to-b from-[#013248]/50 to-transparent"></span>
+                        <span class="from-blue to-blue/20 absolute inset-0 z-2 bg-gradient-to-t"></span>
+                        <div class="absolute! inset-0 container">
+                            <div
+                                class="vertical-text absolute top-24 left-1/2 z-30 -translate-x-1/2 bg-gradient-to-b from-white to-transparent bg-clip-text text-4xl text-transparent sm:top-22 sm:text-5xl lg:top-1/2 lg:-right-12 lg:left-auto lg:-translate-x-0 lg:-translate-y-1/2 lg:bg-gradient-to-r lg:text-6xl/16 xl:text-[80px]/16">
+                                Croatia
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide relative!">
+                        <img src="assets/images/hero-banner3.jpg" alt="hero-banner"
+                            class="h-full w-full object-cover" />
+                        <span class="absolute inset-0 z-2 bg-gradient-to-b from-[#013248]/50 to-transparent"></span>
+                        <span class="from-blue to-blue/20 absolute inset-0 z-2 bg-gradient-to-t"></span>
+                        <div class="absolute! inset-0 container">
+                            <div
+                                class="vertical-text absolute top-24 left-1/2 z-30 -translate-x-1/2 bg-gradient-to-b from-white to-transparent bg-clip-text text-4xl text-transparent sm:top-22 sm:text-5xl lg:top-1/2 lg:-right-12 lg:left-auto lg:-translate-x-0 lg:-translate-y-1/2 lg:bg-gradient-to-r lg:text-6xl/16 xl:text-[80px]/16">
+                                Santorini
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative z-20 container pt-40 pb-10 lg:pt-60 xl:pt-70.5">
+                <h1
+                    class="mx-auto mb-6 max-w-220 text-center text-[26px]/9 text-white sm:mb-10 sm:text-4xl/10 lg:mb-16 lg:px-10 lg:text-5xl/15 xl:text-[56px]/19 2xl:px-0">
+                    Wander beyond the
+                    <span class="font-playfair font-medium italic">
+                        bucket list.
+                    </span>
+                    Discover
+                    <span class="font-playfair font-medium italic">
+                        places
+                    </span>
+                    that change how you
+                    <span class="font-playfair font-medium italic">
+                        see the world.
+                    </span>
+                </h1>
+                <form
+                    class="relative z-20 flex w-full flex-col gap-6 rounded-2xl bg-white px-4 py-5 sm:px-8 lg:mx-auto lg:max-w-273 lg:flex-row lg:items-center lg:rounded-full lg:py-4 xl:gap-6">
+                    <div class="flex grow flex-col gap-3 lg:flex-row lg:gap-4 xl:gap-6">
+                        <div class="w-full space-y-1 lg:max-w-35 lg:space-y-2">
+                            <label class="block font-medium">From</label>
+                            <div x-data="{
+                                            open: false,
+                                            from: '',
+                                            cities: ['New York', 'Toronto', 'Tokyo', 'London', 'Paris'],
+                                            toggle() { this.open = !this.open },
+                                            setFrom(city) { this.from = city; this.open = false; }
+                                        }" x-init="open = false" @click.outside="open = false" class="relative w-full">
+                                <button type="button" @click="toggle"
+                                    class="flex w-full cursor-pointer items-center justify-between gap-2 text-lg/6 font-medium text-black lg:text-xl/6.5">
+                                    <span class="line-clamp-1 truncate text-left" x-text="from || 'Berlin'"></span>
+                                    <i data-lucide="chevron-down" class="size-4.5 shrink-0"></i>
+                                </button>
+
+                                <div x-show="open" x-transition
+                                    class="border-gray-light text-gray absolute inset-x-0 top-full z-50 mt-5 min-w-37 space-y-2 overflow-y-auto rounded-b-lg border bg-white px-4 py-6 text-base/5.5 shadow-[0_0_24px_0_rgba(0,0,0,0.1)] lg:border-0"
+                                    style="display: none">
+                                    <template x-for="city in cities" :key="city">
+                                        <button type="button"
+                                            class="block w-full text-left transition hover:text-black/90"
+                                            :class="{ 'text-black': from === city }" @click="setFrom(city)">
+                                            <span x-text="city"></span>
+                                        </button>
+                                    </template>
+                                </div>
+                            </div>
+                        </div>
+                        <span
+                            class="via-gray/50 bg-gray/20 block h-px shrink-0 from-white to-white lg:h-auto lg:w-0.5 lg:bg-gradient-to-t"></span>
+                        <div class="w-full space-y-1 lg:max-w-35 lg:space-y-2">
+                            <label class="block font-medium">
+                                To Destination
+                            </label>
+                            <div x-data="{
+                                            open: false,
+                                            from: '',
+                                            cities: ['New York', 'Toronto', 'Tokyo', 'London', 'Paris'],
+                                            toggle() { this.open = !this.open },
+                                            setFrom(city) { this.from = city; this.open = false; }
+                                        }" x-init="open = false" @click.outside="open = false" class="relative w-full">
+                                <button type="button" @click="toggle"
+                                    class="flex w-full cursor-pointer items-center justify-between gap-2 text-lg/6 font-medium text-black lg:text-xl/6.5">
+                                    <span class="line-clamp-1 truncate text-left" x-text="from || 'Paris'"></span>
+                                    <i data-lucide="chevron-down" class="size-4.5 shrink-0"></i>
+                                </button>
+
+                                <div x-show="open" x-transition
+                                    class="border-gray-light text-gray absolute inset-x-0 top-full z-50 mt-5 min-w-37 space-y-2 overflow-y-auto rounded-b-lg border bg-white px-4 py-6 text-base/5.5 shadow-[0_0_24px_0_rgba(0,0,0,0.1)] lg:border-0"
+                                    style="display: none">
+                                    <template x-for="city in cities" :key="city">
+                                        <button type="button"
+                                            class="block w-full text-left transition hover:text-black/90"
+                                            :class="{ 'text-black': from === city }" @click="setFrom(city)">
+                                            <span x-text="city"></span>
+                                        </button>
+                                    </template>
+                                </div>
+                            </div>
+                        </div>
+                        <span
+                            class="via-gray/50 bg-gray/20 block h-px shrink-0 from-white to-white lg:h-auto lg:w-0.5 lg:bg-gradient-to-t"></span>
+                        <div class="shrink-0 space-y-1 lg:w-46.5 lg:space-y-2">
+                            <label class="block font-medium">
+                                Departure Date
+                            </label>
+                            <div x-data="datepicker()"
+                                class="calender relative z-1 w-full grow items-center gap-2 text-black">
+                                <input
+                                    class="calender w-full border-none! bg-transparent! p-0 pr-6.5! text-lg/6 font-medium ring-0! outline-0! lg:text-xl/6.5"
+                                    x-ref="picker" id="picker" type="text" x-model="value"
+                                    :class="{ 'text-black placeholder:text-black': value === '' }" />
+                                <i data-lucide="chevron-down"
+                                    class="absolute top-1/2 right-0 -z-1 size-4.5 shrink-0 -translate-y-1/2"></i>
+                            </div>
+                        </div>
+                        <span
+                            class="via-gray/50 bg-gray/20 block h-px shrink-0 from-white to-white lg:h-auto lg:w-0.5 lg:bg-gradient-to-t"></span>
+                        <div class="w-full space-y-1 lg:max-w-35 lg:space-y-2">
+                            <label class="block font-medium">
+                                Trip Duration
+                            </label>
+                            <div class="relative w-full" x-data="select" @click.outside="open = false">
+                                <button type="button" @click="toggle"
+                                    class="flex w-full cursor-pointer items-center justify-between gap-2 text-lg/6 font-medium text-black lg:text-xl/6.5">
+                                    <span class="line-clamp-1 text-left"
+                                        x-text="(tripDuration == '') ? '3-5 Days' : tripDuration"
+                                        :class="(tripDuration == '') ? '' : ''"></span>
+                                    <i data-lucide="chevron-down" class="size-4.5 shrink-0"></i>
+                                </button>
+                                <div class="border-gray-light text-gray absolute inset-x-0 top-full z-50 mt-5 min-w-37 space-y-2 overflow-y-auto rounded-b-lg border bg-white px-4 py-6 text-base/5.5 shadow-[0_0_24px_0_rgba(0,0,0,0.1)] lg:border-0"
+                                    x-show="open" style="display: none">
+                                    <button type="button"
+                                        class="relative flex w-full text-left transition hover:text-black/90"
+                                        @click="setTripDuration('1-3 Days')"
+                                        :class="(tripDuration === '1-3 Days') && 'text-black hover:text-black!'">
+                                        1-3 Days
+                                    </button>
+                                    <button type="button"
+                                        class="relative flex w-full text-left transition hover:text-black/90"
+                                        @click="setTripDuration('3-5 Days')"
+                                        :class="(tripDuration === '3-5 Days') && 'text-black hover:text-black!'">
+                                        3-5 Days
+                                    </button>
+                                    <button type="button"
+                                        class="relative flex w-full text-left transition hover:text-black/90"
+                                        @click="setTripDuration('5+ Days')"
+                                        :class="(tripDuration === '5+ Days') && 'text-black hover:text-black!'">
+                                        5+ Days
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <span
+                            class="via-gray/50 bg-gray/20 block h-px shrink-0 from-white to-white lg:h-auto lg:w-0.5 lg:bg-gradient-to-t"></span>
+                        <div
+                            class="flex shrink-0 items-center justify-between gap-x-5 lg:w-24 lg:flex-col lg:items-start lg:space-y-2">
+                            <label class="block font-medium">
+                                People
+                            </label>
+                            <div x-data="{ count: 2 }" class="flex items-center gap-2.5 text-black lg:justify-between">
+                                <button type="button" class="hover:bg-gray/10 rounded-xs transition"
+                                    @click="if(count > 1) count--">
+                                    <i data-lucide="minus" class="size-4.5 shrink-0"></i>
+                                    <span class="sr-only">Minus</span>
+                                </button>
+                                <input type="text" @input="count = $event.target.value.replace(/[^0-9]/g, '')"
+                                    class="w-9 border-0! p-0 text-center text-lg/6 font-medium text-black ring-0! outline-none! lg:text-xl/6.5"
+                                    x-model="count" />
+                                <button type="button" class="hover:bg-gray/10 rounded-xs transition" @click="count++">
+                                    <i data-lucide="plus" class="size-4.5 shrink-0"></i>
+                                    <span class="sr-only">Plus</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary hover:[&>svg]:rotate-0!">
+                        <i data-lucide="search"></i>
+                        Search
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="bg-blue py-12 lg:py-20">
+            <div class="container">
+                <div class="mb-8 flex flex-wrap items-end justify-between gap-5 lg:mb-12">
+                    <div class="space-y-3 lg:space-y-4">
+                        <span
+                            class="inline-block rounded-full bg-white/20 px-3 py-1.5 text-sm text-white lg:px-4 lg:py-2.5 lg:text-lg/6">
+                            Top Global Destinations
+                        </span>
+                        <h2
+                            class="w-full max-w-185.75 text-2xl font-medium text-white sm:text-3xl lg:text-4xl/11 xl:text-5xl/16">
+                            Explore
+                            <span class="font-playfair italic">
+                                iconic
+                            </span>
+                            places
+                            <span class="block">
+                                that inspire
+                                <span class="font-playfair italic">
+                                    wanderlust worldwide.
+                                </span>
+                            </span>
+                        </h2>
+                    </div>
+                    <div class="ml-auto flex gap-2">
+                        <button type="button"
+                            class="global-destinations-button-prev grid size-10 place-content-center rounded-full bg-white/20 text-white transition hover:text-white/70">
+                            <i data-lucide="chevron-left" class="size-6.5"></i>
+                        </button>
+                        <button type="button"
+                            class="global-destinations-button-next grid size-10 place-content-center rounded-full bg-white/20 text-white transition hover:text-white/70">
+                            <i data-lucide="chevron-right" class="size-6.5"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="swiper global-destinations-swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide w-fit!">
+                            <div
+                                class="relative h-96! w-65! overflow-hidden rounded-3xl text-white transition-all! duration-300! hover:w-75! lg:h-125! lg:w-85! lg:hover:w-95!">
+                                <img src="assets/images/global-destinations1.png" alt="global-destinations"
+                                    class="h-full w-full object-cover" />
+                                <div class="absolute inset-0 flex flex-col justify-between">
+                                    <div class="p-4 text-center lg:p-6">
+                                        <span
+                                            class="inline-flex w-fit gap-2 rounded-full bg-black/20 px-4 py-2.5 text-sm shadow-lg lg:text-lg">
+                                            <i data-lucide="luggage" class="size-5 shrink-0 lg:size-6"></i>
+                                            5+ Packages Available
+                                        </span>
+                                    </div>
+
+                                    <div class="relative z-1 bg-gradient-to-t from-black/80 from-10% via-black/20">
+                                        <span
+                                            class="absolute inset-0 -z-1 mask-[linear-gradient(rgba(0,0,0,0.2),black,black)] backdrop-blur-[20px]"></span>
+                                        <div class="relative space-y-3 p-4 pt-6 lg:space-y-4 lg:p-6 lg:pt-12">
+                                            <h3 class="text-2xl/7 lg:text-[32px]/10.5">
+                                                Paris, France
+                                            </h3>
+                                            <p class="line-clamp-2">
+                                                Stroll the cobbled streets,
+                                                cruise the Seine, and fall
+                                                in love with every corner.
+                                            </p>
+                                            <a href="/destination-packages.html" class="btn w-full justify-between">
+                                                Explore Paris
+                                                <i data-lucide="move-up-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide w-fit!">
+                            <div
+                                class="relative h-96! w-65! overflow-hidden rounded-3xl text-white transition-all! duration-300! hover:w-75! lg:h-125! lg:w-85! lg:hover:w-95!">
+                                <img src="assets/images/global-destinations2.png" alt="global-destinations"
+                                    class="h-full w-full object-cover" />
+                                <div class="absolute inset-0 flex flex-col justify-between">
+                                    <div class="p-4 text-center lg:p-6">
+                                        <span
+                                            class="inline-flex w-fit gap-2 rounded-full bg-black/20 px-4 py-2.5 text-sm shadow-lg lg:text-lg">
+                                            <i data-lucide="luggage" class="size-5 shrink-0 lg:size-6"></i>
+                                            5+ Packages Available
+                                        </span>
+                                    </div>
+
+                                    <div class="relative z-1 bg-gradient-to-t from-black/80 from-10% via-black/20">
+                                        <span
+                                            class="absolute inset-0 -z-1 mask-[linear-gradient(rgba(0,0,0,0.2),black,black)] backdrop-blur-[20px]"></span>
+                                        <div class="relative space-y-3 p-4 pt-6 lg:space-y-4 lg:p-6 lg:pt-12">
+                                            <h3 class="text-2xl/7 lg:text-[32px]/10.5">
+                                                Bali, Indonesia
+                                            </h3>
+                                            <p class="line-clamp-2">
+                                                From serene rice terraces to
+                                                soulful beaches, where peace
+                                                meets play.
+                                            </p>
+                                            <a href="/destination-packages.html" class="btn w-full justify-between">
+                                                Explore Bali
+                                                <i data-lucide="move-up-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide w-fit!">
+                            <div
+                                class="relative h-96! w-65! overflow-hidden rounded-3xl text-white transition-all! duration-300! hover:w-75! lg:h-125! lg:w-85! lg:hover:w-95!">
+                                <img src="assets/images/global-destinations3.png" alt="global-destinations"
+                                    class="h-full w-full object-cover" />
+                                <div class="absolute inset-0 flex flex-col justify-between">
+                                    <div class="p-4 text-center lg:p-6">
+                                        <span
+                                            class="inline-flex w-fit gap-2 rounded-full bg-black/20 px-4 py-2.5 text-sm shadow-lg lg:text-lg">
+                                            <i data-lucide="luggage" class="size-5 shrink-0 lg:size-6"></i>
+                                            5+ Packages Available
+                                        </span>
+                                    </div>
+
+                                    <div class="relative z-1 bg-gradient-to-t from-black/80 from-10% via-black/20">
+                                        <span
+                                            class="absolute inset-0 -z-1 mask-[linear-gradient(rgba(0,0,0,0.2),black,black)] backdrop-blur-[20px]"></span>
+                                        <div class="relative space-y-3 p-4 pt-6 lg:space-y-4 lg:p-6 lg:pt-12">
+                                            <h3 class="text-2xl/7 lg:text-[32px]/10.5">
+                                                Kyoto, Japan
+                                            </h3>
+                                            <p class="line-clamp-2">
+                                                Where tradition meets
+                                                tranquility—shrines,
+                                                gardens, and geishas.
+                                            </p>
+                                            <a href="/destination-packages.html" class="btn w-full justify-between">
+                                                Experience Kyoto
+                                                <i data-lucide="move-up-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide w-fit!">
+                            <div
+                                class="relative h-96! w-65! overflow-hidden rounded-3xl text-white transition-all! duration-300! hover:w-75! lg:h-125! lg:w-85! lg:hover:w-95!">
+                                <img src="assets/images/global-destinations4.png" alt="global-destinations"
+                                    class="h-full w-full object-cover" />
+                                <div class="absolute inset-0 flex flex-col justify-between">
+                                    <div class="p-4 text-center lg:p-6">
+                                        <span
+                                            class="inline-flex w-fit gap-2 rounded-full bg-black/20 px-4 py-2.5 text-sm shadow-lg lg:text-lg">
+                                            <i data-lucide="luggage" class="size-5 shrink-0 lg:size-6"></i>
+                                            5+ Packages Available
+                                        </span>
+                                    </div>
+
+                                    <div class="relative z-1 bg-gradient-to-t from-black/80 from-10% via-black/20">
+                                        <span
+                                            class="absolute inset-0 -z-1 mask-[linear-gradient(rgba(0,0,0,0.2),black,black)] backdrop-blur-[20px]"></span>
+                                        <div class="relative space-y-3 p-4 pt-6 lg:space-y-4 lg:p-6 lg:pt-12">
+                                            <h3 class="text-2xl/7 lg:text-[32px]/10.5">
+                                                Banff, Canada
+                                            </h3>
+                                            <p class="line-clamp-2">
+                                                Majestic mountains,
+                                                glacier-fed lakes, and
+                                                trails that thrill. Banff is
+                                                nature at its most
+                                                breathtaking.
+                                            </p>
+                                            <a href="/destination-packages.html" class="btn w-full justify-between">
+                                                Explore Banff
+                                                <i data-lucide="move-up-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide w-fit!">
+                            <div
+                                class="relative h-96! w-65! overflow-hidden rounded-3xl text-white transition-all! duration-300! hover:w-75! lg:h-125! lg:w-85! lg:hover:w-95!">
+                                <img src="assets/images/global-destinations5.png" alt="global-destinations"
+                                    class="h-full w-full object-cover" />
+                                <div class="absolute inset-0 flex flex-col justify-between">
+                                    <div class="p-4 text-center lg:p-6">
+                                        <span
+                                            class="inline-flex w-fit gap-2 rounded-full bg-black/20 px-4 py-2.5 text-sm shadow-lg lg:text-lg">
+                                            <i data-lucide="luggage" class="size-5 shrink-0 lg:size-6"></i>
+                                            5+ Packages Available
+                                        </span>
+                                    </div>
+
+                                    <div class="relative z-1 bg-gradient-to-t from-black/80 from-10% via-black/20">
+                                        <span
+                                            class="absolute inset-0 -z-1 mask-[linear-gradient(rgba(0,0,0,0.2),black,black)] backdrop-blur-[20px]"></span>
+                                        <div class="relative space-y-3 p-4 pt-6 lg:space-y-4 lg:p-6 lg:pt-12">
+                                            <h3 class="text-2xl/7 lg:text-[32px]/10.5">
+                                                Reykjavík, Iceland
+                                            </h3>
+                                            <p class="line-clamp-2">
+                                                From the Northern Lights to
+                                                glacier hikes, Iceland is a
+                                                dream for thrill-seekers and
+                                                nature lovers.
+                                            </p>
+                                            <a href="/destination-packages.html" class="btn w-full justify-between">
+                                                Explore Banff
+                                                <i data-lucide="move-up-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide w-fit!">
+                            <div
+                                class="relative h-96! w-65! overflow-hidden rounded-3xl text-white transition-all! duration-300! hover:w-75! lg:h-125! lg:w-85! lg:hover:w-95!">
+                                <img src="assets/images/global-destinations1.png" alt="global-destinations"
+                                    class="h-full w-full object-cover" />
+                                <div class="absolute inset-0 flex flex-col justify-between">
+                                    <div class="p-4 text-center lg:p-6">
+                                        <span
+                                            class="inline-flex w-fit gap-2 rounded-full bg-black/20 px-4 py-2.5 text-sm shadow-lg lg:text-lg">
+                                            <i data-lucide="luggage" class="size-5 shrink-0 lg:size-6"></i>
+                                            5+ Packages Available
+                                        </span>
+                                    </div>
+
+                                    <div class="relative z-1 bg-gradient-to-t from-black/80 from-10% via-black/20">
+                                        <span
+                                            class="absolute inset-0 -z-1 mask-[linear-gradient(rgba(0,0,0,0.2),black,black)] backdrop-blur-[20px]"></span>
+                                        <div class="relative space-y-3 p-4 pt-6 lg:space-y-4 lg:p-6 lg:pt-12">
+                                            <h3 class="text-2xl/7 lg:text-[32px]/10.5">
+                                                Paris, France
+                                            </h3>
+                                            <p class="line-clamp-2">
+                                                Stroll the cobbled streets,
+                                                cruise the Seine, and fall
+                                                in love with every corner.
+                                            </p>
+                                            <a href="/destination-packages.html" class="btn w-full justify-between">
+                                                Explore Paris
+                                                <i data-lucide="move-up-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide w-fit!">
+                            <div
+                                class="relative h-96! w-65! overflow-hidden rounded-3xl text-white transition-all! duration-300! hover:w-75! lg:h-125! lg:w-85! lg:hover:w-95!">
+                                <img src="assets/images/global-destinations2.png" alt="global-destinations"
+                                    class="h-full w-full object-cover" />
+                                <div class="absolute inset-0 flex flex-col justify-between">
+                                    <div class="p-4 text-center lg:p-6">
+                                        <span
+                                            class="inline-flex w-fit gap-2 rounded-full bg-black/20 px-4 py-2.5 text-sm shadow-lg lg:text-lg">
+                                            <i data-lucide="luggage" class="size-5 shrink-0 lg:size-6"></i>
+                                            5+ Packages Available
+                                        </span>
+                                    </div>
+
+                                    <div class="relative z-1 bg-gradient-to-t from-black/80 from-10% via-black/20">
+                                        <span
+                                            class="absolute inset-0 -z-1 mask-[linear-gradient(rgba(0,0,0,0.2),black,black)] backdrop-blur-[20px]"></span>
+                                        <div class="relative space-y-3 p-4 pt-6 lg:space-y-4 lg:p-6 lg:pt-12">
+                                            <h3 class="text-2xl/7 lg:text-[32px]/10.5">
+                                                Bali, Indonesia
+                                            </h3>
+                                            <p class="line-clamp-2">
+                                                From serene rice terraces to
+                                                soulful beaches, where peace
+                                                meets play.
+                                            </p>
+                                            <a href="/destination-packages.html" class="btn w-full justify-between">
+                                                Explore Bali
+                                                <i data-lucide="move-up-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide w-fit!">
+                            <div
+                                class="relative h-96! w-65! overflow-hidden rounded-3xl text-white transition-all! duration-300! hover:w-75! lg:h-125! lg:w-85! lg:hover:w-95!">
+                                <img src="assets/images/global-destinations3.png" alt="global-destinations"
+                                    class="h-full w-full object-cover" />
+                                <div class="absolute inset-0 flex flex-col justify-between">
+                                    <div class="p-4 text-center lg:p-6">
+                                        <span
+                                            class="inline-flex w-fit gap-2 rounded-full bg-black/20 px-4 py-2.5 text-sm shadow-lg lg:text-lg">
+                                            <i data-lucide="luggage" class="size-5 shrink-0 lg:size-6"></i>
+                                            5+ Packages Available
+                                        </span>
+                                    </div>
+
+                                    <div class="relative z-1 bg-gradient-to-t from-black/80 from-10% via-black/20">
+                                        <span
+                                            class="absolute inset-0 -z-1 mask-[linear-gradient(rgba(0,0,0,0.2),black,black)] backdrop-blur-[20px]"></span>
+                                        <div class="relative space-y-3 p-4 pt-6 lg:space-y-4 lg:p-6 lg:pt-12">
+                                            <h3 class="text-2xl/7 lg:text-[32px]/10.5">
+                                                Kyoto, Japan
+                                            </h3>
+                                            <p class="line-clamp-2">
+                                                Where tradition meets
+                                                tranquility—shrines,
+                                                gardens, and geishas.
+                                            </p>
+                                            <a href="/destination-packages.html" class="btn w-full justify-between">
+                                                Experience Kyoto
+                                                <i data-lucide="move-up-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide w-fit!">
+                            <div
+                                class="relative h-96! w-65! overflow-hidden rounded-3xl text-white transition-all! duration-300! hover:w-75! lg:h-125! lg:w-85! lg:hover:w-95!">
+                                <img src="assets/images/global-destinations4.png" alt="global-destinations"
+                                    class="h-full w-full object-cover" />
+                                <div class="absolute inset-0 flex flex-col justify-between">
+                                    <div class="p-4 text-center lg:p-6">
+                                        <span
+                                            class="inline-flex w-fit gap-2 rounded-full bg-black/20 px-4 py-2.5 text-sm shadow-lg lg:text-lg">
+                                            <i data-lucide="luggage" class="size-5 shrink-0 lg:size-6"></i>
+                                            5+ Packages Available
+                                        </span>
+                                    </div>
+
+                                    <div class="relative z-1 bg-gradient-to-t from-black/80 from-10% via-black/20">
+                                        <span
+                                            class="absolute inset-0 -z-1 mask-[linear-gradient(rgba(0,0,0,0.2),black,black)] backdrop-blur-[20px]"></span>
+                                        <div class="relative space-y-3 p-4 pt-6 lg:space-y-4 lg:p-6 lg:pt-12">
+                                            <h3 class="text-2xl/7 lg:text-[32px]/10.5">
+                                                Banff, Canada
+                                            </h3>
+                                            <p class="line-clamp-2">
+                                                Majestic mountains,
+                                                glacier-fed lakes, and
+                                                trails that thrill. Banff is
+                                                nature at its most
+                                                breathtaking.
+                                            </p>
+                                            <a href="/destination-packages.html" class="btn w-full justify-between">
+                                                Explore Banff
+                                                <i data-lucide="move-up-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide w-fit!">
+                            <div
+                                class="relative h-96! w-65! overflow-hidden rounded-3xl text-white transition-all! duration-300! hover:w-75! lg:h-125! lg:w-85! lg:hover:w-95!">
+                                <img src="assets/images/global-destinations5.png" alt="global-destinations"
+                                    class="h-full w-full object-cover" />
+                                <div class="absolute inset-0 flex flex-col justify-between">
+                                    <div class="p-4 text-center lg:p-6">
+                                        <span
+                                            class="inline-flex w-fit gap-2 rounded-full bg-black/20 px-4 py-2.5 text-sm shadow-lg lg:text-lg">
+                                            <i data-lucide="luggage" class="size-5 shrink-0 lg:size-6"></i>
+                                            5+ Packages Available
+                                        </span>
+                                    </div>
+
+                                    <div class="relative z-1 bg-gradient-to-t from-black/80 from-10% via-black/20">
+                                        <span
+                                            class="absolute inset-0 -z-1 mask-[linear-gradient(rgba(0,0,0,0.2),black,black)] backdrop-blur-[20px]"></span>
+                                        <div class="relative space-y-3 p-4 pt-6 lg:space-y-4 lg:p-6 lg:pt-12">
+                                            <h3 class="text-2xl/7 lg:text-[32px]/10.5">
+                                                Reykjavík, Iceland
+                                            </h3>
+                                            <p class="line-clamp-2">
+                                                From the Northern Lights to
+                                                glacier hikes, Iceland is a
+                                                dream for thrill-seekers and
+                                                nature lovers.
+                                            </p>
+                                            <a href="/destination-packages.html" class="btn w-full justify-between">
+                                                Explore Banff
+                                                <i data-lucide="move-up-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-[url('/assets/images/choose-us-bg.png')] bg-cover bg-center bg-no-repeat py-12 lg:py-20">
+            <div class="container">
+                <div class="mb-12 flex flex-col justify-between gap-4 lg:mb-20 xl:flex-row xl:items-end">
+                    <div class="w-full space-y-4">
+                        <span
+                            class="bg-primary/10 text-primary inline-block rounded-full px-3 py-1.5 text-sm lg:px-4 lg:py-2.5 lg:text-lg/6">
+                            Why travelers choose us
+                        </span>
+                        <h2
+                            class="w-full max-w-122.5 text-2xl font-medium text-black sm:text-3xl lg:text-4xl/11 xl:text-5xl/16">
+                            Tailored
+                            <span class="font-playfair italic">
+                                journeys
+                            </span>
+                            with real
+                            <span class="font-playfair italic">
+                                value
+                            </span>
+                            and
+                            <span class="font-playfair italic">
+                                support.
+                            </span>
+                        </h2>
+                    </div>
+                    <p class="text-gray-dark w-full max-w-150 lg:text-lg/6">
+                        Enjoy curated itineraries, transparent pricing, and
+                        24/7 assistance from local experts who truly care.
+                        Because your travel should be effortless, enriching,
+                        and entirely yours.
+                    </p>
+                </div>
+                <div class="flex flex-col justify-between gap-7 sm:gap-10 lg:flex-row xl:gap-20 2xl:gap-31">
+                    <div class="relative grow">
+                        <div class="relative z-1 mx-auto w-full max-w-150 lg:mr-0 lg:-mb-10 lg:-ml-7 lg:max-w-178">
+                            <img src="assets/images/choose-us-img.png" alt="choose us" class="h-full w-full" />
+                        </div>
+                        <img src="assets/images/map-line.png" alt="map line"
+                            class="absolute -top-5 left-1/2 w-150 -translate-x-1/2 sm:-top-10 lg:-left-5 lg:w-full lg:shrink-0 lg:-translate-x-0 2xl:-top-24 2xl:h-166.75" />
+                    </div>
+                    <div class="text-gray-dark relative w-full space-y-4 lg:max-w-120 xl:max-w-150">
+                        <div
+                            class="bg-gray-light flex flex-col gap-4 rounded-3xl p-4 sm:flex-row sm:px-5 xl:px-8 xl:py-6">
+                            <div
+                                class="grid size-14 shrink-0 place-content-center rounded-2xl bg-black/5 text-black sm:size-21">
+                                <i data-lucide="globe" class="size-9 stroke-[1.5px]! sm:size-13.5"></i>
+                            </div>
+                            <div class="space-y-2.5 xl:space-y-4">
+                                <h3 class="text-lg text-black lg:text-xl/6">
+                                    Curated Global Packages
+                                </h3>
+                                <p>
+                                    From romantic Parisian getaways to
+                                    African safaris - all trips are
+                                    handpicked for quality, comfort, and
+                                    value.
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-gray-light flex flex-col gap-4 rounded-3xl p-4 sm:flex-row sm:px-5 xl:px-8 xl:py-6">
+                            <div
+                                class="grid size-14 shrink-0 place-content-center rounded-2xl bg-black/5 text-black sm:size-21">
+                                <i data-lucide="map" class="size-9 stroke-[1.5px]! sm:size-13.5"></i>
+                            </div>
+                            <div class="space-y-2.5 xl:space-y-4">
+                                <h3 class="text-lg text-black lg:text-xl/6">
+                                    Flexibility & Customization
+                                </h3>
+                                <p>
+                                    Adjust itineraries, travel dates, and
+                                    experiences to match your pace and
+                                    preferences. No one-size-fits-all here.
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-gray-light flex flex-col gap-4 rounded-3xl p-4 sm:flex-row sm:px-5 xl:px-8 xl:py-6">
+                            <div
+                                class="grid size-14 shrink-0 place-content-center rounded-2xl bg-black/5 text-black sm:size-21">
+                                <i data-lucide="tickets-plane" class="size-9 stroke-[1.5px]! sm:size-13.5"></i>
+                            </div>
+                            <div class="space-y-2.5 xl:space-y-4">
+                                <h3 class="text-lg text-black lg:text-xl/6">
+                                    Secure Booking & Support
+                                </h3>
+                                <p>
+                                    Book confidently with our encrypted
+                                    payment gateway and 24/7 multilingual
+                                    customer support for any help, anytime.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="bg-[radial-gradient(50%_190.38%_at_55.72%_50%,rgba(0,117,149,0.1)_0%,rgba(255,255,255,0.1)_100%)] py-12 lg:py-20">
+            <div class="container">
+                <div class="mb-8 w-full space-y-4 text-center lg:mb-12">
+                    <span
+                        class="bg-primary/10 text-primary inline-block rounded-full px-3 py-1.5 text-sm lg:px-4 lg:py-2.5 lg:text-lg/6">
+                        Popular Experiences
+                    </span>
+                    <h2 class="w-full text-2xl font-medium text-black sm:text-3xl lg:text-4xl/11 xl:text-5xl/16">
+                        Browse our
+                        <span class="font-playfair italic">
+                            top experiences
+                        </span>
+                    </h2>
+                </div>
+                <div class="swiper popular-experiences-swiper -mx-2! -my-10! grid! px-2! py-10!">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div
+                                class="group border-gray-light shadow-3xl hover:shadow-4xl relative flex flex-col overflow-hidden rounded-3xl border bg-white transition-all duration-300 hover:border-white">
+                                <div class="absolute inset-0 z-1 opacity-0 duration-300 group-hover:opacity-100">
+                                    <img src="assets/images/popular-experiences6.jpg" alt="global-destinations"
+                                        class="h-full w-full object-cover" />
+                                    <span
+                                        class="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black/50 via-black/30 to-transparent"></span>
+                                </div>
+                                <h3
+                                    class="relative z-2 p-4 text-center text-2xl/7 text-black group-hover:text-white lg:p-6 lg:text-[32px]/10.5">
+                                    Beach & Islands
+                                </h3>
+                                <div class="mx-auto h-44 shrink-0 lg:h-60">
+                                    <img src="assets/images/popular-experiences1.png" alt="popular-experiences"
+                                        class="h-full w-full object-contain" />
+                                </div>
+                                <div class="relative z-2 xl:mt-4">
+                                    <span
+                                        class="absolute inset-x-0 bottom-0 -z-1 h-48 bg-gradient-to-t mask-[linear-gradient(rgba(0,0,0,0.2),black,black)] opacity-0 backdrop-blur-[5px] duration-300 group-hover:from-black/50 group-hover:from-10% group-hover:opacity-100"></span>
+                                    <div class="relative z-1 space-y-4 p-4 lg:p-6">
+                                        <p class="text-gray-dark line-clamp-2 transition group-hover:text-white">
+                                            Relaxing tropical escapes,
+                                            island hopping, beach resorts
+                                        </p>
+                                        <a href="/tours-packages.html"
+                                            class="btn btn-primary w-full justify-between group-hover:bg-white group-hover:text-black">
+                                            Explore Packages
+                                            <i data-lucide="move-up-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div
+                                class="group border-gray-light shadow-3xl hover:shadow-4xl relative flex flex-col overflow-hidden rounded-3xl border bg-white transition-all duration-300 hover:border-white">
+                                <div class="absolute inset-0 z-1 opacity-0 duration-300 group-hover:opacity-100">
+                                    <img src="assets/images/popular-experiences7.png" alt="global-destinations"
+                                        class="h-full w-full object-cover" />
+                                    <span
+                                        class="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black/50 via-black/30 to-transparent"></span>
+                                </div>
+                                <h3
+                                    class="relative z-2 p-4 text-center text-2xl/7 text-black group-hover:text-white lg:p-6 lg:text-[32px]/10.5">
+                                    Adventure
+                                </h3>
+                                <div class="mx-auto h-44 shrink-0 lg:h-60">
+                                    <img src="assets/images/popular-experiences2.png" alt="popular-experiences"
+                                        class="h-full w-full object-contain" />
+                                </div>
+                                <div class="relative z-2 xl:mt-4">
+                                    <span
+                                        class="absolute inset-x-0 bottom-0 -z-1 h-48 bg-gradient-to-t mask-[linear-gradient(rgba(0,0,0,0.2),black,black)] opacity-0 backdrop-blur-[5px] duration-300 group-hover:from-black/50 group-hover:from-10% group-hover:opacity-100"></span>
+                                    <div class="relative z-1 space-y-4 p-4 lg:p-6">
+                                        <p class="text-gray-dark line-clamp-2 transition group-hover:text-white">
+                                            Thrill-based trips like
+                                            trekking, rafting, paragliding,
+                                            safaris
+                                        </p>
+                                        <a href="/tours-packages.html"
+                                            class="btn btn-primary w-full justify-between group-hover:bg-white group-hover:text-black">
+                                            Explore Packages
+                                            <i data-lucide="move-up-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div
+                                class="group border-gray-light shadow-3xl hover:shadow-4xl relative flex flex-col overflow-hidden rounded-3xl border bg-white transition-all duration-300 hover:border-white">
+                                <div class="absolute inset-0 z-1 opacity-0 duration-300 group-hover:opacity-100">
+                                    <img src="assets/images/popular-experiences8.png" alt="global-destinations"
+                                        class="h-full w-full object-cover" />
+                                    <span
+                                        class="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black/50 via-black/30 to-transparent"></span>
+                                </div>
+                                <h3
+                                    class="relative z-2 p-4 text-center text-2xl/7 text-black group-hover:text-white lg:p-6 lg:text-[32px]/10.5">
+                                    Family Holidays
+                                </h3>
+                                <div class="mx-auto h-44 shrink-0 lg:h-60">
+                                    <img src="assets/images/popular-experiences3.png" alt="popular-experiences"
+                                        class="h-full w-full object-contain" />
+                                </div>
+                                <div class="relative z-2 xl:mt-4">
+                                    <span
+                                        class="absolute inset-x-0 bottom-0 -z-1 h-48 bg-gradient-to-t mask-[linear-gradient(rgba(0,0,0,0.2),black,black)] opacity-0 backdrop-blur-[5px] duration-300 group-hover:from-black/50 group-hover:from-10% group-hover:opacity-100"></span>
+                                    <div class="relative z-1 space-y-4 p-4 lg:p-6">
+                                        <p class="text-gray-dark line-clamp-2 transition group-hover:text-white">
+                                            Kid-friendly destinations, theme
+                                            parks, multi-day tours
+                                        </p>
+                                        <a href="/tours-packages.html"
+                                            class="btn btn-primary w-full justify-between group-hover:bg-white group-hover:text-black">
+                                            Explore Packages
+                                            <i data-lucide="move-up-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div
+                                class="group border-gray-light shadow-3xl hover:shadow-4xl relative flex flex-col overflow-hidden rounded-3xl border bg-white transition-all duration-300 hover:border-white">
+                                <div class="absolute inset-0 z-1 opacity-0 duration-300 group-hover:opacity-100">
+                                    <img src="assets/images/popular-experiences9.png" alt="global-destinations"
+                                        class="h-full w-full object-cover" />
+                                    <span
+                                        class="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black/50 via-black/30 to-transparent"></span>
+                                </div>
+                                <h3
+                                    class="relative z-2 p-4 text-center text-2xl/7 text-black group-hover:text-white lg:p-6 lg:text-[32px]/10.5">
+                                    Cruises
+                                </h3>
+                                <div class="mx-auto h-44 shrink-0 lg:h-60">
+                                    <img src="assets/images/popular-experiences4.png" alt="popular-experiences"
+                                        class="h-full w-full object-contain" />
+                                </div>
+                                <div class="relative z-2 xl:mt-4">
+                                    <span
+                                        class="absolute inset-x-0 bottom-0 -z-1 h-48 bg-gradient-to-t mask-[linear-gradient(rgba(0,0,0,0.2),black,black)] opacity-0 backdrop-blur-[5px] duration-300 group-hover:from-black/50 group-hover:from-10% group-hover:opacity-100"></span>
+                                    <div class="relative z-1 space-y-4 p-4 lg:p-6">
+                                        <p class="text-gray-dark line-clamp-2 transition group-hover:text-white">
+                                            Luxury cruises, river voyages,
+                                            expedition ships
+                                        </p>
+                                        <a href="/tours-packages.html"
+                                            class="btn btn-primary w-full justify-between group-hover:bg-white group-hover:text-black">
+                                            Explore Packages
+                                            <i data-lucide="move-up-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div
+                                class="group border-gray-light shadow-3xl hover:shadow-4xl relative flex flex-col overflow-hidden rounded-3xl border bg-white transition-all duration-300 hover:border-white">
+                                <div class="absolute inset-0 z-1 opacity-0 duration-300 group-hover:opacity-100">
+                                    <img src="assets/images/popular-experiences10.png" alt="global-destinations"
+                                        class="h-full w-full object-cover" />
+                                    <span
+                                        class="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black/50 via-black/30 to-transparent"></span>
+                                </div>
+                                <h3
+                                    class="relative z-2 p-4 text-center text-2xl/7 text-black group-hover:text-white lg:p-6 lg:text-[32px]/10.5">
+                                    Family Holidays
+                                </h3>
+                                <div class="mx-auto h-44 shrink-0 lg:h-60">
+                                    <img src="assets/images/popular-experiences5.png" alt="popular-experiences"
+                                        class="h-full w-full object-contain" />
+                                </div>
+                                <div class="relative z-2 xl:mt-4">
+                                    <span
+                                        class="absolute inset-x-0 bottom-0 -z-1 h-48 bg-gradient-to-t mask-[linear-gradient(rgba(0,0,0,0.2),black,black)] opacity-0 backdrop-blur-[5px] duration-300 group-hover:from-black/50 group-hover:from-10% group-hover:opacity-100"></span>
+                                    <div class="relative z-1 space-y-4 p-4 lg:p-6">
+                                        <p class="text-gray-dark line-clamp-2 transition group-hover:text-white">
+                                            Kid-friendly destinations, theme
+                                            parks, multi-day tours
+                                        </p>
+                                        <a href="/tours-packages.html"
+                                            class="btn btn-primary w-full justify-between group-hover:bg-white group-hover:text-black">
+                                            Explore Packages
+                                            <i data-lucide="move-up-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div
+                                class="group border-gray-light shadow-3xl hover:shadow-4xl relative flex flex-col overflow-hidden rounded-3xl border bg-white transition-all duration-300 hover:border-white">
+                                <div class="absolute inset-0 z-1 opacity-0 duration-300 group-hover:opacity-100">
+                                    <img src="assets/images/popular-experiences6.jpg" alt="global-destinations"
+                                        class="h-full w-full object-cover" />
+                                    <span
+                                        class="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black/50 via-black/30 to-transparent"></span>
+                                </div>
+                                <h3
+                                    class="relative z-2 p-4 text-center text-2xl/7 text-black group-hover:text-white lg:p-6 lg:text-[32px]/10.5">
+                                    Beach & Islands
+                                </h3>
+                                <div class="mx-auto h-44 shrink-0 lg:h-60">
+                                    <img src="assets/images/popular-experiences1.png" alt="popular-experiences"
+                                        class="h-full w-full object-contain" />
+                                </div>
+                                <div class="relative z-2 xl:mt-4">
+                                    <span
+                                        class="absolute inset-x-0 bottom-0 -z-1 h-48 bg-gradient-to-t mask-[linear-gradient(rgba(0,0,0,0.2),black,black)] opacity-0 backdrop-blur-[5px] duration-300 group-hover:from-black/50 group-hover:from-10% group-hover:opacity-100"></span>
+                                    <div class="relative z-1 space-y-4 p-4 lg:p-6">
+                                        <p class="text-gray-dark line-clamp-2 transition group-hover:text-white">
+                                            Relaxing tropical escapes,
+                                            island hopping, beach resorts
+                                        </p>
+                                        <a href="/tours-packages.html"
+                                            class="btn btn-primary w-full justify-between group-hover:bg-white group-hover:text-black">
+                                            Explore Packages
+                                            <i data-lucide="move-up-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div
+                                class="group border-gray-light shadow-3xl hover:shadow-4xl relative flex flex-col overflow-hidden rounded-3xl border bg-white transition-all duration-300 hover:border-white">
+                                <div class="absolute inset-0 z-1 opacity-0 duration-300 group-hover:opacity-100">
+                                    <img src="assets/images/popular-experiences7.png" alt="global-destinations"
+                                        class="h-full w-full object-cover" />
+                                    <span
+                                        class="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black/50 via-black/30 to-transparent"></span>
+                                </div>
+                                <h3
+                                    class="relative z-2 p-4 text-center text-2xl/7 text-black group-hover:text-white lg:p-6 lg:text-[32px]/10.5">
+                                    Adventure
+                                </h3>
+                                <div class="mx-auto h-44 shrink-0 lg:h-60">
+                                    <img src="assets/images/popular-experiences2.png" alt="popular-experiences"
+                                        class="h-full w-full object-contain" />
+                                </div>
+                                <div class="relative z-2 xl:mt-4">
+                                    <span
+                                        class="absolute inset-x-0 bottom-0 -z-1 h-48 bg-gradient-to-t mask-[linear-gradient(rgba(0,0,0,0.2),black,black)] opacity-0 backdrop-blur-[5px] duration-300 group-hover:from-black/50 group-hover:from-10% group-hover:opacity-100"></span>
+                                    <div class="relative z-1 space-y-4 p-4 lg:p-6">
+                                        <p class="text-gray-dark line-clamp-2 transition group-hover:text-white">
+                                            Thrill-based trips like
+                                            trekking, rafting, paragliding,
+                                            safaris
+                                        </p>
+                                        <a href="/tours-packages.html"
+                                            class="btn btn-primary w-full justify-between group-hover:bg-white group-hover:text-black">
+                                            Explore Packages
+                                            <i data-lucide="move-up-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div
+                                class="group border-gray-light shadow-3xl hover:shadow-4xl relative flex flex-col overflow-hidden rounded-3xl border bg-white transition-all duration-300 hover:border-white">
+                                <div class="absolute inset-0 z-1 opacity-0 duration-300 group-hover:opacity-100">
+                                    <img src="assets/images/popular-experiences8.png" alt="global-destinations"
+                                        class="h-full w-full object-cover" />
+                                    <span
+                                        class="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black/50 via-black/30 to-transparent"></span>
+                                </div>
+                                <h3
+                                    class="relative z-2 p-4 text-center text-2xl/7 text-black group-hover:text-white lg:p-6 lg:text-[32px]/10.5">
+                                    Family Holidays
+                                </h3>
+                                <div class="mx-auto h-44 shrink-0 lg:h-60">
+                                    <img src="assets/images/popular-experiences3.png" alt="popular-experiences"
+                                        class="h-full w-full object-contain" />
+                                </div>
+                                <div class="relative z-2 xl:mt-4">
+                                    <span
+                                        class="absolute inset-x-0 bottom-0 -z-1 h-48 bg-gradient-to-t mask-[linear-gradient(rgba(0,0,0,0.2),black,black)] opacity-0 backdrop-blur-[5px] duration-300 group-hover:from-black/50 group-hover:from-10% group-hover:opacity-100"></span>
+                                    <div class="relative z-1 space-y-4 p-4 lg:p-6">
+                                        <p class="text-gray-dark line-clamp-2 transition group-hover:text-white">
+                                            Kid-friendly destinations, theme
+                                            parks, multi-day tours
+                                        </p>
+                                        <a href="/tours-packages.html"
+                                            class="btn btn-primary w-full justify-between group-hover:bg-white group-hover:text-black">
+                                            Explore Packages
+                                            <i data-lucide="move-up-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div
+                                class="group border-gray-light shadow-3xl hover:shadow-4xl relative flex flex-col overflow-hidden rounded-3xl border bg-white transition-all duration-300 hover:border-white">
+                                <div class="absolute inset-0 z-1 opacity-0 duration-300 group-hover:opacity-100">
+                                    <img src="assets/images/popular-experiences9.png" alt="global-destinations"
+                                        class="h-full w-full object-cover" />
+                                    <span
+                                        class="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black/50 via-black/30 to-transparent"></span>
+                                </div>
+                                <h3
+                                    class="relative z-2 p-4 text-center text-2xl/7 text-black group-hover:text-white lg:p-6 lg:text-[32px]/10.5">
+                                    Cruises
+                                </h3>
+                                <div class="mx-auto h-44 shrink-0 lg:h-60">
+                                    <img src="assets/images/popular-experiences4.png" alt="popular-experiences"
+                                        class="h-full w-full object-contain" />
+                                </div>
+                                <div class="relative z-2 xl:mt-4">
+                                    <span
+                                        class="absolute inset-x-0 bottom-0 -z-1 h-48 bg-gradient-to-t mask-[linear-gradient(rgba(0,0,0,0.2),black,black)] opacity-0 backdrop-blur-[5px] duration-300 group-hover:from-black/50 group-hover:from-10% group-hover:opacity-100"></span>
+                                    <div class="relative z-1 space-y-4 p-4 lg:p-6">
+                                        <p class="text-gray-dark line-clamp-2 transition group-hover:text-white">
+                                            Luxury cruises, river voyages,
+                                            expedition ships
+                                        </p>
+                                        <a href="/tours-packages.html"
+                                            class="btn btn-primary w-full justify-between group-hover:bg-white group-hover:text-black">
+                                            Explore Packages
+                                            <i data-lucide="move-up-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div
+                                class="group border-gray-light shadow-3xl hover:shadow-4xl relative flex flex-col overflow-hidden rounded-3xl border bg-white transition-all duration-300 hover:border-white">
+                                <div class="absolute inset-0 z-1 opacity-0 duration-300 group-hover:opacity-100">
+                                    <img src="assets/images/popular-experiences10.png" alt="global-destinations"
+                                        class="h-full w-full object-cover" />
+                                    <span
+                                        class="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black/50 via-black/30 to-transparent"></span>
+                                </div>
+                                <h3
+                                    class="relative z-2 p-4 text-center text-2xl/7 text-black group-hover:text-white lg:p-6 lg:text-[32px]/10.5">
+                                    Family Holidays
+                                </h3>
+                                <div class="mx-auto h-44 shrink-0 lg:h-60">
+                                    <img src="assets/images/popular-experiences5.png" alt="popular-experiences"
+                                        class="h-full w-full object-contain" />
+                                </div>
+                                <div class="relative z-2 xl:mt-4">
+                                    <span
+                                        class="absolute inset-x-0 bottom-0 -z-1 h-48 bg-gradient-to-t mask-[linear-gradient(rgba(0,0,0,0.2),black,black)] opacity-0 backdrop-blur-[5px] duration-300 group-hover:from-black/50 group-hover:from-10% group-hover:opacity-100"></span>
+                                    <div class="relative z-1 space-y-4 p-4 lg:p-6">
+                                        <p class="text-gray-dark line-clamp-2 transition group-hover:text-white">
+                                            Kid-friendly destinations, theme
+                                            parks, multi-day tours
+                                        </p>
+                                        <a href="/tours-packages.html"
+                                            class="btn btn-primary w-full justify-between group-hover:bg-white group-hover:text-black">
+                                            Explore Packages
+                                            <i data-lucide="move-up-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container py-12 lg:py-20">
+            <div class="mx-auto mb-8 w-full max-w-155 space-y-4 text-center lg:mb-12">
+                <span
+                    class="bg-primary/10 text-primary inline-block rounded-full px-3 py-1.5 text-sm lg:px-4 lg:py-2.5 lg:text-lg/6">
+                    Top rated packages
+                </span>
+
+                <h2 class="w-full text-2xl font-medium text-black sm:text-3xl lg:text-4xl/11 xl:text-5xl/16">
+                    Discover
+                    <span class="font-playfair italic"> trips </span>
+                    tailored to how you
+                    <span class="font-playfair italic">
+                        love to travel.
+                    </span>
+                </h2>
+            </div>
+            <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8 2xl:px-11.5">
+                <div
+                    class="border-gray-light shadow-3xl flex h-full flex-col gap-4 rounded-3xl border bg-white p-4 transition hover:shadow-[0_16px_32px_-12px_rgba(88,92,95,0.1)] xl:gap-6">
+                    <div class="group relative h-60 overflow-hidden rounded-2xl xl:h-75">
+                        <a href="/package-details.html" class="absolute inset-0 z-1"></a>
+                        <img src="assets/images/top-packages1.jpg" alt="top-packages"
+                            class="h-full w-full object-cover duration-300 group-hover:scale-105" />
+                        <button type="button"
+                            class="group/like text-primary absolute top-4 left-2.5 z-2 grid size-7 place-content-center rounded-full bg-white lg:left-4 lg:size-8">
+                            <i data-lucide="heart" class="group-hover/like:fill-primary size-5 duration-300"></i>
+                        </button>
+                        <span
+                            class="absolute top-4 right-2.5 z-2 rounded-full bg-white px-2.5 py-1.5 text-xs/4 text-black lg:right-4 lg:px-4 lg:text-sm/4.5">
+                            Family-friendly
+                        </span>
+                    </div>
+                    <div class="flex flex-col gap-4 xl:gap-6">
+                        <div class="grow space-y-4 xl:space-y-6">
+                            <div class="space-y-2">
+                                <span
+                                    class="text-green bg-green/10 inline-block rounded-full px-2.5 py-1.5 text-xs/4 font-semibold lg:px-4 lg:text-sm/4.5">
+                                    10% off on bank offers
+                                </span>
+                                <div class="flex items-start justify-between gap-2.5 lg:gap-4">
+                                    <h3
+                                        class="block text-xl text-black transition hover:opacity-70 sm:min-h-16 lg:text-2xl/8">
+                                        <a href="/package-details.html" class="line-clamp-2">
+                                            Bali uncovered
+                                        </a>
+                                    </h3>
+
+                                    <span
+                                        class="bg-gray-light mt-0.5 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-sm/5 text-black ring-1 ring-black/2 ring-inset lg:text-base/5.5">
+                                        <i data-lucide="star" class="text-yellow fill-yellow size-4 shrink-0"></i>
+                                        4.9
+                                    </span>
+                                </div>
+                                <p class="font-semibold text-black lg:text-xl/6.5">
+                                    $3,799
+                                </p>
+                            </div>
+                            <div class="space-y-2 text-sm/5 lg:text-base/5.5">
+                                <div class="flex gap-2">
+                                    <span
+                                        class="bg-gray mt-[3px] grid size-4 shrink-0 place-content-center rounded-full text-white">
+                                        <i data-lucide="check" class="size-2.5"></i>
+                                    </span>
+                                    <p>5 Days / 4 Nights</p>
+                                </div>
+                                <div class="flex gap-2">
+                                    <span
+                                        class="bg-gray mt-[3px] grid size-4 shrink-0 place-content-center rounded-full text-white">
+                                        <i data-lucide="check" class="size-2.5"></i>
+                                    </span>
+                                    <p>
+                                        Private overwater villa, snorkeling
+                                    </p>
+                                </div>
+                                <div class="flex gap-2">
+                                    <span
+                                        class="bg-gray mt-[3px] grid size-4 shrink-0 place-content-center rounded-full text-white">
+                                        <i data-lucide="check" class="size-2.5"></i>
+                                    </span>
+                                    <p>All-inclusive island resort</p>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="/package-details.html"
+                            class="group/detail text-primary tranistion inline-flex w-fit items-center gap-2 font-medium hover:opacity-80 lg:text-lg/6">
+                            View Details
+                            <i data-lucide="move-right" class="w-0 duration-300 group-hover/detail:size-5"></i>
+                        </a>
+                    </div>
+                </div>
+                <div
+                    class="border-gray-light shadow-3xl flex h-full flex-col gap-4 rounded-3xl border bg-white p-4 transition hover:shadow-[0_16px_32px_-12px_rgba(88,92,95,0.1)] xl:gap-6">
+                    <div class="group relative h-60 overflow-hidden rounded-2xl xl:h-75">
+                        <a href="#" class="absolute inset-0 z-1"></a>
+                        <img src="assets/images/top-packages2.jpg" alt="top-packages"
+                            class="h-full w-full object-cover duration-300 group-hover:scale-105" />
+                        <button type="button"
+                            class="group/like text-primary absolute top-4 left-2.5 z-2 grid size-7 place-content-center rounded-full bg-white lg:left-4 lg:size-8">
+                            <i data-lucide="heart" class="group-hover/like:fill-primary size-5 duration-300"></i>
+                        </button>
+                        <span
+                            class="absolute top-4 right-2.5 z-2 rounded-full bg-white px-2.5 py-1.5 text-xs/4 text-black lg:right-4 lg:px-4 lg:text-sm/4.5">
+                            Cultural Immersion
+                        </span>
+                    </div>
+                    <div class="flex flex-col gap-4 xl:gap-6">
+                        <div class="grow space-y-4 xl:space-y-6">
+                            <div class="space-y-2">
+                                <span
+                                    class="text-green bg-green/10 inline-block rounded-full px-2.5 py-1.5 text-xs/4 font-semibold lg:px-4 lg:text-sm/4.5">
+                                    Easy EMIs
+                                </span>
+                                <div class="flex items-start justify-between gap-2.5 lg:gap-4">
+                                    <h3
+                                        class="block text-xl text-black transition hover:opacity-70 sm:min-h-16 lg:text-2xl/8">
+                                        <a href="/package-details.html" class="line-clamp-2">
+                                            Tokyo & Kyoto Explorer
+                                        </a>
+                                    </h3>
+
+                                    <span
+                                        class="bg-gray-light mt-0.5 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-sm/5 text-black ring-1 ring-black/2 ring-inset lg:text-base/5.5">
+                                        <i data-lucide="star" class="text-yellow fill-yellow size-4 shrink-0"></i>
+                                        4.6
+                                    </span>
+                                </div>
+                                <p class="font-semibold text-black lg:text-xl/6.5">
+                                    $2,099
+                                </p>
+                            </div>
+                            <div class="space-y-2 text-sm/5 lg:text-base/5.5">
+                                <div class="flex gap-2">
+                                    <span
+                                        class="bg-gray mt-[3px] grid size-4 shrink-0 place-content-center rounded-full text-white">
+                                        <i data-lucide="check" class="size-2.5"></i>
+                                    </span>
+                                    <p>7 Days / 6 Nights</p>
+                                </div>
+                                <div class="flex gap-2">
+                                    <span
+                                        class="bg-gray mt-[3px] grid size-4 shrink-0 place-content-center rounded-full text-white">
+                                        <i data-lucide="check" class="size-2.5"></i>
+                                    </span>
+                                    <p>
+                                        Sushi-making, bullet train, temples
+                                    </p>
+                                </div>
+                                <div class="flex gap-2">
+                                    <span
+                                        class="bg-gray mt-[3px] grid size-4 shrink-0 place-content-center rounded-full text-white">
+                                        <i data-lucide="check" class="size-2.5"></i>
+                                    </span>
+                                    <p>City hotels + traditional Ryokan</p>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="/package-details.html"
+                            class="group/detail text-primary tranistion inline-flex w-fit items-center gap-2 font-medium hover:opacity-80 lg:text-lg/6">
+                            View Details
+                            <i data-lucide="move-right" class="w-0 duration-300 group-hover/detail:size-5"></i>
+                        </a>
+                    </div>
+                </div>
+                <div
+                    class="border-gray-light shadow-3xl flex h-full flex-col gap-4 rounded-3xl border bg-white p-4 transition hover:shadow-[0_16px_32px_-12px_rgba(88,92,95,0.1)] xl:gap-6">
+                    <div class="group relative h-60 overflow-hidden rounded-2xl xl:h-75">
+                        <a href="/package-details.html" class="absolute inset-0 z-1"></a>
+                        <img src="assets/images/top-packages3.jpg" alt="top-packages"
+                            class="h-full w-full object-cover duration-300 group-hover:scale-105" />
+                        <button type="button"
+                            class="group/like text-primary absolute top-4 left-2.5 z-2 grid size-7 place-content-center rounded-full bg-white lg:left-4 lg:size-8">
+                            <i data-lucide="heart" class="group-hover/like:fill-primary size-5 duration-300"></i>
+                        </button>
+                        <span
+                            class="absolute top-4 right-2.5 z-2 rounded-full bg-white px-2.5 py-1.5 text-xs/4 text-black lg:right-4 lg:px-4 lg:text-sm/4.5">
+                            Luxury Retreat
+                        </span>
+                    </div>
+                    <div class="flex flex-col gap-4 xl:gap-6">
+                        <div class="grow space-y-4 xl:space-y-6">
+                            <div class="space-y-2">
+                                <span
+                                    class="text-red bg-red/10 inline-block rounded-full px-2.5 py-1.5 text-xs/4 font-semibold lg:px-4 lg:text-sm/4.5">
+                                    20% Off
+                                </span>
+                                <div class="flex items-start justify-between gap-2.5 lg:gap-4">
+                                    <h3
+                                        class="block text-xl text-black transition hover:opacity-70 sm:min-h-16 lg:text-2xl/8">
+                                        <a href="/package-details.html" class="line-clamp-2">
+                                            Swiss Alps Lakes Getaway
+                                        </a>
+                                    </h3>
+
+                                    <span
+                                        class="bg-gray-light mt-0.5 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-sm/5 text-black ring-1 ring-black/2 ring-inset lg:text-base/5.5">
+                                        <i data-lucide="star" class="text-yellow fill-yellow size-4 shrink-0"></i>
+                                        4.7
+                                    </span>
+                                </div>
+                                <p class="font-semibold text-black lg:text-xl/6.5">
+                                    $2,299
+                                </p>
+                            </div>
+                            <div class="space-y-2 text-sm/5 lg:text-base/5.5">
+                                <div class="flex gap-2">
+                                    <span
+                                        class="bg-gray mt-[3px] grid size-4 shrink-0 place-content-center rounded-full text-white">
+                                        <i data-lucide="check" class="size-2.5"></i>
+                                    </span>
+                                    <p>8 Days / 7 Nights</p>
+                                </div>
+                                <div class="flex gap-2">
+                                    <span
+                                        class="bg-gray mt-[3px] grid size-4 shrink-0 place-content-center rounded-full text-white">
+                                        <i data-lucide="check" class="size-2.5"></i>
+                                    </span>
+                                    <p>Glacier express train ride</p>
+                                </div>
+                                <div class="flex gap-2">
+                                    <span
+                                        class="bg-gray mt-[3px] grid size-4 shrink-0 place-content-center rounded-full text-white">
+                                        <i data-lucide="check" class="size-2.5"></i>
+                                    </span>
+                                    <p>Lakeside chalets, alpine tours</p>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="/package-details.html"
+                            class="group/detail text-primary tranistion inline-flex w-fit items-center gap-2 font-medium hover:opacity-80 lg:text-lg/6">
+                            View Details
+                            <i data-lucide="move-right" class="w-0 duration-300 group-hover/detail:size-5"></i>
+                        </a>
+                    </div>
+                </div>
+                <div
+                    class="border-gray-light shadow-3xl flex h-full flex-col gap-4 rounded-3xl border bg-white p-4 transition hover:shadow-[0_16px_32px_-12px_rgba(88,92,95,0.1)] xl:gap-6">
+                    <div class="group relative h-60 overflow-hidden rounded-2xl xl:h-75">
+                        <a href="/package-details.html" class="absolute inset-0 z-1"></a>
+                        <img src="assets/images/top-packages4.jpg" alt="top-packages"
+                            class="h-full w-full object-cover duration-300 group-hover:scale-105" />
+                        <button type="button"
+                            class="group/like text-primary absolute top-4 left-2.5 z-2 grid size-7 place-content-center rounded-full bg-white lg:left-4 lg:size-8">
+                            <i data-lucide="heart" class="group-hover/like:fill-primary size-5 duration-300"></i>
+                        </button>
+                        <span
+                            class="absolute top-4 right-2.5 z-2 rounded-full bg-white px-2.5 py-1.5 text-xs/4 text-black lg:right-4 lg:px-4 lg:text-sm/4.5">
+                            Couple Friendly
+                        </span>
+                    </div>
+                    <div class="flex flex-col gap-4 xl:gap-6">
+                        <div class="grow space-y-4 xl:space-y-6">
+                            <div class="space-y-2">
+                                <span
+                                    class="text-yellow-dark bg-yellow-light inline-block rounded-full px-2.5 py-1.5 text-xs/4 font-semibold lg:px-4 lg:text-sm/4.5">
+                                    Seasonal Favorite
+                                </span>
+                                <div class="flex items-start justify-between gap-2.5 lg:gap-4">
+                                    <h3
+                                        class="block text-xl text-black transition hover:opacity-70 sm:min-h-16 lg:text-2xl/8">
+                                        <a href="/package-details.html" class="line-clamp-2">
+                                            Maldives Experience
+                                        </a>
+                                    </h3>
+
+                                    <span
+                                        class="bg-gray-light mt-0.5 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-sm/5 text-black ring-1 ring-black/2 ring-inset lg:text-base/5.5">
+                                        <i data-lucide="star" class="text-yellow fill-yellow size-4 shrink-0"></i>
+                                        4.9
+                                    </span>
+                                </div>
+                                <p class="font-semibold text-black lg:text-xl/6.5">
+                                    $3,799
+                                </p>
+                            </div>
+                            <div class="space-y-2 text-sm/5 lg:text-base/5.5">
+                                <div class="flex gap-2">
+                                    <span
+                                        class="bg-gray mt-[3px] grid size-4 shrink-0 place-content-center rounded-full text-white">
+                                        <i data-lucide="check" class="size-2.5"></i>
+                                    </span>
+                                    <p>5 Days / 4 Nights</p>
+                                </div>
+                                <div class="flex gap-2">
+                                    <span
+                                        class="bg-gray mt-[3px] grid size-4 shrink-0 place-content-center rounded-full text-white">
+                                        <i data-lucide="check" class="size-2.5"></i>
+                                    </span>
+                                    <p>
+                                        Private overwater villa, snorkeling
+                                    </p>
+                                </div>
+                                <div class="flex gap-2">
+                                    <span
+                                        class="bg-gray mt-[3px] grid size-4 shrink-0 place-content-center rounded-full text-white">
+                                        <i data-lucide="check" class="size-2.5"></i>
+                                    </span>
+                                    <p>All-inclusive island resort</p>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="/package-details.html"
+                            class="group/detail text-primary tranistion inline-flex w-fit items-center gap-2 font-medium hover:opacity-80 lg:text-lg/6">
+                            View Details
+                            <i data-lucide="move-right" class="w-0 duration-300 group-hover/detail:size-5"></i>
+                        </a>
+                    </div>
+                </div>
+                <div
+                    class="border-gray-light shadow-3xl flex h-full flex-col gap-4 rounded-3xl border bg-white p-4 transition hover:shadow-[0_16px_32px_-12px_rgba(88,92,95,0.1)] xl:gap-6">
+                    <div class="group relative h-60 overflow-hidden rounded-2xl xl:h-75">
+                        <a href="/package-details.html" class="absolute inset-0 z-1"></a>
+                        <img src="assets/images/top-packages5.jpg" alt="top-packages"
+                            class="h-full w-full object-cover duration-300 group-hover:scale-105" />
+                        <button type="button"
+                            class="group/like text-primary absolute top-4 left-2.5 z-2 grid size-7 place-content-center rounded-full bg-white lg:left-4 lg:size-8">
+                            <i data-lucide="heart" class="group-hover/like:fill-primary size-5 duration-300"></i>
+                        </button>
+                        <span
+                            class="absolute top-4 right-2.5 z-2 rounded-full bg-white px-2.5 py-1.5 text-xs/4 text-black lg:right-4 lg:px-4 lg:text-sm/4.5">
+                            Adventure
+                        </span>
+                    </div>
+                    <div class="flex flex-col gap-4 xl:gap-6">
+                        <div class="grow space-y-4 xl:space-y-6">
+                            <div class="space-y-2">
+                                <span
+                                    class="text-red bg-red/10 inline-block rounded-full px-2.5 py-1.5 text-xs/4 font-semibold lg:px-4 lg:text-sm/4.5">
+                                    Trending now
+                                </span>
+                                <div class="flex items-start justify-between gap-2.5 lg:gap-4">
+                                    <h3
+                                        class="block text-xl text-black transition hover:opacity-70 sm:min-h-16 lg:text-2xl/8">
+                                        <a href="/package-details.html" class="line-clamp-2">
+                                            Morocco Desert & Medina
+                                        </a>
+                                    </h3>
+
+                                    <span
+                                        class="bg-gray-light mt-0.5 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-sm/5 text-black ring-1 ring-black/2 ring-inset lg:text-base/5.5">
+                                        <i data-lucide="star" class="text-yellow fill-yellow size-4 shrink-0"></i>
+                                        4.5
+                                    </span>
+                                </div>
+                                <p class="font-semibold text-black lg:text-xl/6.5">
+                                    $1,799
+                                </p>
+                            </div>
+                            <div class="space-y-2 text-sm/5 lg:text-base/5.5">
+                                <div class="flex gap-2">
+                                    <span
+                                        class="bg-gray mt-[3px] grid size-4 shrink-0 place-content-center rounded-full text-white">
+                                        <i data-lucide="check" class="size-2.5"></i>
+                                    </span>
+                                    <p>9 Days / 8 Nights</p>
+                                </div>
+                                <div class="flex gap-2">
+                                    <span
+                                        class="bg-gray mt-[3px] grid size-4 shrink-0 place-content-center rounded-full text-white">
+                                        <i data-lucide="check" class="size-2.5"></i>
+                                    </span>
+                                    <p>Sahara camel ride, spice souks</p>
+                                </div>
+                                <div class="flex gap-2">
+                                    <span
+                                        class="bg-gray mt-[3px] grid size-4 shrink-0 place-content-center rounded-full text-white">
+                                        <i data-lucide="check" class="size-2.5"></i>
+                                    </span>
+                                    <p>Boutique riads, rooftop dinners</p>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="/package-details.html"
+                            class="group/detail text-primary tranistion inline-flex w-fit items-center gap-2 font-medium hover:opacity-80 lg:text-lg/6">
+                            View Details
+                            <i data-lucide="move-right" class="w-0 duration-300 group-hover/detail:size-5"></i>
+                        </a>
+                    </div>
+                </div>
+                <div
+                    class="border-gray-light shadow-3xl flex h-full flex-col gap-4 rounded-3xl border bg-white p-4 transition hover:shadow-[0_16px_32px_-12px_rgba(88,92,95,0.1)] xl:gap-6">
+                    <div class="group relative h-60 overflow-hidden rounded-2xl xl:h-75">
+                        <a href="/package-details.html" class="absolute inset-0 z-1"></a>
+                        <img src="assets/images/top-packages6.jpg" alt="top-packages"
+                            class="h-full w-full object-cover duration-300 group-hover:scale-105" />
+                        <button type="button"
+                            class="group/like text-primary absolute top-4 left-2.5 z-2 grid size-7 place-content-center rounded-full bg-white lg:left-4 lg:size-8">
+                            <i data-lucide="heart" class="group-hover/like:fill-primary size-5 duration-300"></i>
+                        </button>
+                        <span
+                            class="absolute top-4 right-2.5 z-2 rounded-full bg-white px-2.5 py-1.5 text-xs/4 text-black lg:right-4 lg:px-4 lg:text-sm/4.5">
+                            Family Friendly
+                        </span>
+                    </div>
+                    <div class="flex flex-col gap-4 xl:gap-6">
+                        <div class="grow space-y-4 xl:space-y-6">
+                            <div class="space-y-2">
+                                <span
+                                    class="text-yellow-dark bg-yellow-light inline-block rounded-full px-2.5 py-1.5 text-xs/4 font-semibold lg:px-4 lg:text-sm/4.5">
+                                    Best Time to Visit
+                                </span>
+                                <div class="flex items-start justify-between gap-2.5 lg:gap-4">
+                                    <h3
+                                        class="block text-xl text-black transition hover:opacity-70 sm:min-h-16 lg:text-2xl/8">
+                                        <a href="/package-details.html" class="line-clamp-2">
+                                            New York Roadtrip
+                                        </a>
+                                    </h3>
+
+                                    <span
+                                        class="bg-gray-light mt-0.5 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-sm/5 text-black ring-1 ring-black/2 ring-inset lg:text-base/5.5">
+                                        <i data-lucide="star" class="text-yellow fill-yellow size-4 shrink-0"></i>
+                                        4.5
+                                    </span>
+                                </div>
+                                <p class="font-semibold text-black lg:text-xl/6.5">
+                                    $1,899
+                                </p>
+                            </div>
+                            <div class="space-y-2 text-sm/5 lg:text-base/5.5">
+                                <div class="flex gap-2">
+                                    <span
+                                        class="bg-gray mt-[3px] grid size-4 shrink-0 place-content-center rounded-full text-white">
+                                        <i data-lucide="check" class="size-2.5"></i>
+                                    </span>
+                                    <p>6 Days / 5 Nights</p>
+                                </div>
+                                <div class="flex gap-2">
+                                    <span
+                                        class="bg-gray mt-[3px] grid size-4 shrink-0 place-content-center rounded-full text-white">
+                                        <i data-lucide="check" class="size-2.5"></i>
+                                    </span>
+                                    <p>
+                                        Times Square, Broadway, waterfalls
+                                    </p>
+                                </div>
+                                <div class="flex gap-2">
+                                    <span
+                                        class="bg-gray mt-[3px] grid size-4 shrink-0 place-content-center rounded-full text-white">
+                                        <i data-lucide="check" class="size-2.5"></i>
+                                    </span>
+                                    <p>Hotels with skyline views</p>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="/package-details.html"
+                            class="group/detail text-primary tranistion inline-flex w-fit items-center gap-2 font-medium hover:opacity-80 lg:text-lg/6">
+                            View Details
+                            <i data-lucide="move-right" class="w-0 duration-300 group-hover/detail:size-5"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="bg-[radial-gradient(50%_190.38%_at_55.72%_50%,_rgba(0,117,149,0.1)_0%,_rgba(255,255,255,0.1)_100%)] py-12 lg:py-20">
+            <div class="container">
+                <div
+                    class="relative flex flex-col items-center justify-between overflow-hidden rounded-3xl bg-[url('/assets/images/offer-banner.jpg')] bg-cover bg-no-repeat px-4 text-white lg:flex-row lg:items-end lg:gap-5 lg:pl-10 xl:pr-10 2xl:pr-12.5 2xl:pl-21">
+                    <span class="absolute inset-0 -z-0 bg-gradient-to-b from-black/70 to-transparent"></span>
+                    <div
+                        class="relative max-w-129.75 space-y-4 pt-10 pb-5 text-center lg:py-10 lg:text-left xl:space-y-6">
+                        <div>
+                            <h2 class="text-5xl/12 font-bold xl:text-[58px]/18">
+                                20% Off
+                            </h2>
+                            <h3 class="text-2xl/8 xl:text-[40px]/13">
+                                on Europe Summer Tours
+                            </h3>
+                        </div>
+                        <p class="xl:text-2xl/8">
+                            Book your 2025 escape now — Paris, Rome & beyond
+                            await. Flights + stays included.
+                        </p>
+                        <a href="/destination.html" class="btn">
+                            Explore Deals
+                            <i data-lucide="move-up-right"></i>
+                        </a>
+                    </div>
+                    <img src="assets/images/offer-img.png" alt="offer-img"
+                        class="relative z-10 h-full w-120 xl:w-auto xl:object-contain" />
+                </div>
+            </div>
+        </div>
+
+        <div class="overflow-hidden">
+            <div class="container py-12 lg:py-20">
+                <div class="mb-8 flex flex-wrap items-end justify-between gap-5 lg:mb-12">
+                    <div class="space-y-3 lg:space-y-4">
+                        <span
+                            class="bg-primary/10 text-primary inline-block rounded-full px-3 py-1.5 text-sm lg:px-4 lg:py-2.5 lg:text-lg/6">
+                            Upcoming tours
+                        </span>
+                        <h2
+                            class="w-full max-w-185.75 text-2xl font-medium text-black sm:text-3xl lg:text-4xl/11 xl:text-5xl/16">
+                            Where the
+                            <span class="font-playfair italic">
+                                next adventure begins!
+                            </span>
+                        </h2>
+                        <p class="text-gray-dark w-full max-w-129.5 lg:text-lg/6">
+                            Plan Ahead with Upcoming Departures - Limited
+                            Slots, Exclusive Offers, Unforgettable Moments
+                        </p>
+                    </div>
+                    <div class="relative ml-auto flex gap-2">
+                        <button type="button"
+                            class="upcoming-tours-button-prev bg-gray-light text-gray grid size-10 place-content-center rounded-full ring-[1.5px] ring-black/4 transition ring-inset hover:text-black">
+                            <i data-lucide="chevron-left" class="size-6.5"></i>
+                        </button>
+                        <button type="button"
+                            class="upcoming-tours-button-next bg-gray-light text-gray grid size-10 place-content-center rounded-full ring-[1.5px] ring-black/4 transition ring-inset hover:text-black">
+                            <i data-lucide="chevron-right" class="size-6.5"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="swiper upcoming-tours-swiper -mx-2! -my-10! grid! overflow-visible! px-2! py-10!">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div
+                                class="border-gray-light shadow-3xl group flex h-full flex-col gap-4 rounded-3xl border bg-white p-4 transition hover:shadow-[0_16px_32px_-12px_rgba(88,92,95,0.1)]">
+                                <div class="relative h-60 overflow-hidden rounded-2xl lg:h-75">
+                                    <a href="/tours-packages.html"
+                                        class="absolute inset-0 z-1 duration-300 hover:bg-black/10 md:hidden"></a>
+                                    <div
+                                        class="absolute inset-0 z-1 hidden place-content-center bg-black/20 opacity-0 transition group-hover:opacity-100 md:grid">
+                                        <a href="/tours-packages.html"
+                                            class="btn group/link bg-white/20 text-white backdrop-blur-[2px]">
+                                            View Details
+                                            <span
+                                                class="grid size-6 shrink-0 place-content-center rounded-full bg-white text-black duration-300 group-hover/link:rotate-45">
+                                                <i data-lucide="move-up-right" class="size-4"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <img src="assets/images/upcoming-tours1.jpg" alt="upcoming-tours"
+                                        class="h-full w-full object-cover duration-300 group-hover:scale-105" />
+                                    <button type="button"
+                                        class="group/like text-primary absolute top-4 right-2.5 z-2 grid size-7 place-content-center rounded-full bg-white lg:right-4 lg:size-8">
+                                        <i data-lucide="heart"
+                                            class="group-hover/like:fill-primary size-5 duration-300"></i>
+                                    </button>
+                                </div>
+                                <div class="space-y-2">
+                                    <span
+                                        class="text-green bg-green/10 inline-block rounded-full px-2.5 py-1.5 text-xs/4 font-semibold lg:px-4 lg:text-sm/4.5">
+                                        Early Bird 10% off
+                                    </span>
+                                    <h3 class="block text-xl text-black lg:text-2xl/8">
+                                        <a href="/tours-packages.html"
+                                            class="line-clamp-1 w-fit transition hover:opacity-70">
+                                            Tuscany & Countryside
+                                        </a>
+                                    </h3>
+                                    <p class="font-medium">
+                                        Starting from $2,499/- per person
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div
+                                class="border-gray-light shadow-3xl group flex h-full flex-col gap-4 rounded-3xl border bg-white p-4 transition hover:shadow-[0_16px_32px_-12px_rgba(88,92,95,0.1)]">
+                                <div class="relative h-60 overflow-hidden rounded-2xl lg:h-75">
+                                    <a href="/tours-packages.html"
+                                        class="absolute inset-0 z-1 duration-300 hover:bg-black/10 md:hidden"></a>
+                                    <div
+                                        class="absolute inset-0 z-1 hidden place-content-center bg-black/20 opacity-0 transition group-hover:opacity-100 md:grid">
+                                        <a href="/tours-packages.html"
+                                            class="btn group/link bg-white/20 text-white backdrop-blur-[2px]">
+                                            View Details
+                                            <span
+                                                class="grid size-6 shrink-0 place-content-center rounded-full bg-white text-black duration-300 group-hover/link:rotate-45">
+                                                <i data-lucide="move-up-right" class="size-4"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <img src="assets/images/upcoming-tours2.jpg" alt="upcoming-tours"
+                                        class="h-full w-full object-cover duration-300 group-hover:scale-105" />
+                                    <button type="button"
+                                        class="group/like text-primary absolute top-4 right-2.5 z-2 grid size-7 place-content-center rounded-full bg-white lg:right-4 lg:size-8">
+                                        <i data-lucide="heart"
+                                            class="group-hover/like:fill-primary size-5 duration-300"></i>
+                                    </button>
+                                </div>
+                                <div class="space-y-2">
+                                    <span
+                                        class="text-green bg-green/10 inline-block rounded-full px-2.5 py-1.5 text-xs/4 font-semibold lg:px-4 lg:text-sm/4.5">
+                                        20% Off
+                                    </span>
+                                    <h3 class="block text-xl text-black lg:text-2xl/8">
+                                        <a href="/tours-packages.html"
+                                            class="line-clamp-1 w-fit transition hover:opacity-70">
+                                            Thailand Island Hopper
+                                        </a>
+                                    </h3>
+                                    <p class="font-medium">
+                                        Starting from $1,599/- per person
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div
+                                class="border-gray-light shadow-3xl group flex h-full flex-col gap-4 rounded-3xl border bg-white p-4 transition hover:shadow-[0_16px_32px_-12px_rgba(88,92,95,0.1)]">
+                                <div class="relative h-60 overflow-hidden rounded-2xl lg:h-75">
+                                    <a href="/tours-packages.html"
+                                        class="absolute inset-0 z-1 duration-300 hover:bg-black/10 md:hidden"></a>
+                                    <div
+                                        class="absolute inset-0 z-1 hidden place-content-center bg-black/20 opacity-0 transition group-hover:opacity-100 md:grid">
+                                        <a href="/tours-packages.html"
+                                            class="btn group/link bg-white/20 text-white backdrop-blur-[2px]">
+                                            View Details
+                                            <span
+                                                class="grid size-6 shrink-0 place-content-center rounded-full bg-white text-black duration-300 group-hover/link:rotate-45">
+                                                <i data-lucide="move-up-right" class="size-4"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <img src="assets/images/upcoming-tours3.jpg" alt="upcoming-tours"
+                                        class="h-full w-full object-cover duration-300 group-hover:scale-105" />
+                                    <button type="button"
+                                        class="group/like text-primary absolute top-4 right-2.5 z-2 grid size-7 place-content-center rounded-full bg-white lg:right-4 lg:size-8">
+                                        <i data-lucide="heart"
+                                            class="group-hover/like:fill-primary size-5 duration-300"></i>
+                                    </button>
+                                </div>
+                                <div class="space-y-2">
+                                    <span
+                                        class="text-red bg-red/10 inline-block rounded-full px-2.5 py-1.5 text-xs/4 font-semibold lg:px-4 lg:text-sm/4.5">
+                                        Trending Now
+                                    </span>
+                                    <h3 class="block text-xl text-black lg:text-2xl/8">
+                                        <a href="/tours-packages.html"
+                                            class="line-clamp-1 w-fit transition hover:opacity-70">
+                                            Dubai Luxe Tour
+                                        </a>
+                                    </h3>
+                                    <p class="font-medium">
+                                        Starting from $2,199/- per person
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div
+                                class="border-gray-light shadow-3xl group flex h-full flex-col gap-4 rounded-3xl border bg-white p-4 transition hover:shadow-[0_16px_32px_-12px_rgba(88,92,95,0.1)]">
+                                <div class="relative h-60 overflow-hidden rounded-2xl lg:h-75">
+                                    <a href="/tours-packages.html"
+                                        class="absolute inset-0 z-1 duration-300 hover:bg-black/10 md:hidden"></a>
+                                    <div
+                                        class="absolute inset-0 z-1 hidden place-content-center bg-black/20 opacity-0 transition group-hover:opacity-100 md:grid">
+                                        <a href="/tours-packages.html"
+                                            class="btn group/link bg-white/20 text-white backdrop-blur-[2px]">
+                                            View Details
+                                            <span
+                                                class="grid size-6 shrink-0 place-content-center rounded-full bg-white text-black duration-300 group-hover/link:rotate-45">
+                                                <i data-lucide="move-up-right" class="size-4"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <img src="assets/images/upcoming-tours4.jpg" alt="upcoming-tours"
+                                        class="h-full w-full object-cover duration-300 group-hover:scale-105" />
+                                    <button type="button"
+                                        class="group/like text-primary absolute top-4 right-2.5 z-2 grid size-7 place-content-center rounded-full bg-white lg:right-4 lg:size-8">
+                                        <i data-lucide="heart"
+                                            class="group-hover/like:fill-primary size-5 duration-300"></i>
+                                    </button>
+                                </div>
+                                <div class="grow space-y-2">
+                                    <span
+                                        class="text-yellow-dark bg-yellow-light inline-block rounded-full px-2.5 py-1.5 text-xs/4 font-semibold lg:px-4 lg:text-sm/4.5">
+                                        Best Time to Visit
+                                    </span>
+                                    <h3 class="block text-xl text-black lg:text-2xl/8">
+                                        <a href="/tours-packages.html"
+                                            class="line-clamp-1 w-fit transition hover:opacity-70">
+                                            Vietnam Culture & Cruise
+                                        </a>
+                                    </h3>
+                                    <p class="font-medium">
+                                        Starting from $1,799/- per person
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div
+                                class="border-gray-light shadow-3xl group flex h-full flex-col gap-4 rounded-3xl border bg-white p-4 transition hover:shadow-[0_16px_32px_-12px_rgba(88,92,95,0.1)]">
+                                <div class="relative h-60 overflow-hidden rounded-2xl lg:h-75">
+                                    <a href="/tours-packages.html"
+                                        class="absolute inset-0 z-1 duration-300 hover:bg-black/10 md:hidden"></a>
+                                    <div
+                                        class="absolute inset-0 z-1 hidden place-content-center bg-black/20 opacity-0 transition group-hover:opacity-100 md:grid">
+                                        <a href="/tours-packages.html"
+                                            class="btn group/link bg-white/20 text-white backdrop-blur-[2px]">
+                                            View Details
+                                            <span
+                                                class="grid size-6 shrink-0 place-content-center rounded-full bg-white text-black duration-300 group-hover/link:rotate-45">
+                                                <i data-lucide="move-up-right" class="size-4"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <img src="assets/images/upcoming-tours5.jpg" alt="upcoming-tours"
+                                        class="h-full w-full object-cover duration-300 group-hover:scale-105" />
+                                    <button type="button"
+                                        class="group/like text-primary absolute top-4 right-2.5 z-2 grid size-7 place-content-center rounded-full bg-white lg:right-4 lg:size-8">
+                                        <i data-lucide="heart"
+                                            class="group-hover/like:fill-primary size-5 duration-300"></i>
+                                    </button>
+                                </div>
+                                <div class="grow space-y-2">
+                                    <span
+                                        class="text-red bg-red/10 inline-block rounded-full px-2.5 py-1.5 text-xs/4 font-semibold lg:px-4 lg:text-sm/4.5">
+                                        Early Bird 10% off
+                                    </span>
+                                    <h3 class="block text-xl text-black lg:text-2xl/8">
+                                        <a href="/tours-packages.html"
+                                            class="line-clamp-1 w-fit transition hover:opacity-70">
+                                            Santorini Sunsets
+                                        </a>
+                                    </h3>
+                                    <p class="font-medium">
+                                        Starting from $18,799/- per person
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div
+                                class="border-gray-light shadow-3xl group flex h-full flex-col gap-4 rounded-3xl border bg-white p-4 transition hover:shadow-[0_16px_32px_-12px_rgba(88,92,95,0.1)]">
+                                <div class="relative h-60 overflow-hidden rounded-2xl lg:h-75">
+                                    <a href="/tours-packages.html"
+                                        class="absolute inset-0 z-1 duration-300 hover:bg-black/10 md:hidden"></a>
+                                    <div
+                                        class="absolute inset-0 z-1 hidden place-content-center bg-black/20 opacity-0 transition group-hover:opacity-100 md:grid">
+                                        <a href="/tours-packages.html"
+                                            class="btn group/link bg-white/20 text-white backdrop-blur-[2px]">
+                                            View Details
+                                            <span
+                                                class="grid size-6 shrink-0 place-content-center rounded-full bg-white text-black duration-300 group-hover/link:rotate-45">
+                                                <i data-lucide="move-up-right" class="size-4"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <img src="assets/images/upcoming-tours1.jpg" alt="upcoming-tours"
+                                        class="h-full w-full object-cover duration-300 group-hover:scale-105" />
+                                    <button type="button"
+                                        class="group/like text-primary absolute top-4 right-2.5 z-2 grid size-7 place-content-center rounded-full bg-white lg:right-4 lg:size-8">
+                                        <i data-lucide="heart"
+                                            class="group-hover/like:fill-primary size-5 duration-300"></i>
+                                    </button>
+                                </div>
+                                <div class="space-y-2">
+                                    <span
+                                        class="text-green bg-green/10 inline-block rounded-full px-2.5 py-1.5 text-xs/4 font-semibold lg:px-4 lg:text-sm/4.5">
+                                        Early Bird 10% off
+                                    </span>
+                                    <h3 class="block text-xl text-black lg:text-2xl/8">
+                                        <a href="/tours-packages.html"
+                                            class="line-clamp-1 w-fit transition hover:opacity-70">
+                                            Tuscany & Countryside
+                                        </a>
+                                    </h3>
+                                    <p class="font-medium">
+                                        Starting from $2,499/- per person
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div
+                                class="border-gray-light shadow-3xl group flex h-full flex-col gap-4 rounded-3xl border bg-white p-4 transition hover:shadow-[0_16px_32px_-12px_rgba(88,92,95,0.1)]">
+                                <div class="relative h-60 overflow-hidden rounded-2xl lg:h-75">
+                                    <a href="/tours-packages.html"
+                                        class="absolute inset-0 z-1 duration-300 hover:bg-black/10 md:hidden"></a>
+                                    <div
+                                        class="absolute inset-0 z-1 hidden place-content-center bg-black/20 opacity-0 transition group-hover:opacity-100 md:grid">
+                                        <a href="/tours-packages.html"
+                                            class="btn group/link bg-white/20 text-white backdrop-blur-[2px]">
+                                            View Details
+                                            <span
+                                                class="grid size-6 shrink-0 place-content-center rounded-full bg-white text-black duration-300 group-hover/link:rotate-45">
+                                                <i data-lucide="move-up-right" class="size-4"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <img src="assets/images/upcoming-tours2.jpg" alt="upcoming-tours"
+                                        class="h-full w-full object-cover duration-300 group-hover:scale-105" />
+                                    <button type="button"
+                                        class="group/like text-primary absolute top-4 right-2.5 z-2 grid size-7 place-content-center rounded-full bg-white lg:right-4 lg:size-8">
+                                        <i data-lucide="heart"
+                                            class="group-hover/like:fill-primary size-5 duration-300"></i>
+                                    </button>
+                                </div>
+                                <div class="space-y-2">
+                                    <span
+                                        class="text-green bg-green/10 inline-block rounded-full px-2.5 py-1.5 text-xs/4 font-semibold lg:px-4 lg:text-sm/4.5">
+                                        20% Off
+                                    </span>
+                                    <h3 class="block text-xl text-black lg:text-2xl/8">
+                                        <a href="/tours-packages.html"
+                                            class="line-clamp-1 w-fit transition hover:opacity-70">
+                                            Thailand Island Hopper
+                                        </a>
+                                    </h3>
+                                    <p class="font-medium">
+                                        Starting from $1,599/- per person
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div
+                                class="border-gray-light shadow-3xl group flex h-full flex-col gap-4 rounded-3xl border bg-white p-4 transition hover:shadow-[0_16px_32px_-12px_rgba(88,92,95,0.1)]">
+                                <div class="relative h-60 overflow-hidden rounded-2xl lg:h-75">
+                                    <a href="/tours-packages.html"
+                                        class="absolute inset-0 z-1 duration-300 hover:bg-black/10 md:hidden"></a>
+                                    <div
+                                        class="absolute inset-0 z-1 hidden place-content-center bg-black/20 opacity-0 transition group-hover:opacity-100 md:grid">
+                                        <a href="/tours-packages.html"
+                                            class="btn group/link bg-white/20 text-white backdrop-blur-[2px]">
+                                            View Details
+                                            <span
+                                                class="grid size-6 shrink-0 place-content-center rounded-full bg-white text-black duration-300 group-hover/link:rotate-45">
+                                                <i data-lucide="move-up-right" class="size-4"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <img src="assets/images/upcoming-tours3.jpg" alt="upcoming-tours"
+                                        class="h-full w-full object-cover duration-300 group-hover:scale-105" />
+                                    <button type="button"
+                                        class="group/like text-primary absolute top-4 right-2.5 z-2 grid size-7 place-content-center rounded-full bg-white lg:right-4 lg:size-8">
+                                        <i data-lucide="heart"
+                                            class="group-hover/like:fill-primary size-5 duration-300"></i>
+                                    </button>
+                                </div>
+                                <div class="space-y-2">
+                                    <span
+                                        class="text-red bg-red/10 inline-block rounded-full px-2.5 py-1.5 text-xs/4 font-semibold lg:px-4 lg:text-sm/4.5">
+                                        Trending Now
+                                    </span>
+                                    <h3 class="block text-xl text-black lg:text-2xl/8">
+                                        <a href="/tours-packages.html"
+                                            class="line-clamp-1 w-fit transition hover:opacity-70">
+                                            Dubai Luxe Tour
+                                        </a>
+                                    </h3>
+                                    <p class="font-medium">
+                                        Starting from $2,199/ - per person
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-blue relative overflow-hidden py-12 lg:py-20">
+            <img src="assets/images/dot-line.png" alt="dot-line"
+                class="absolute bottom-0 left-0 hidden w-20 opacity-50 lg:block xl:w-28 2xl:w-auto" />
+            <div class="relative container">
+                <div class="mb-12 flex flex-col justify-between gap-4 lg:mb-20 xl:flex-row xl:items-end">
+                    <div class="w-full space-y-4">
+                        <span
+                            class="inline-block rounded-full bg-white/20 px-3 py-1.5 text-sm text-white lg:px-4 lg:py-2.5 lg:text-lg/6">
+                            Top Experiences
+                        </span>
+                        <h2 class="text-2xl font-medium text-white sm:text-3xl lg:text-4xl/11 xl:text-5xl/16">
+                            Popular
+                            <span class="font-playfair italic">
+                                travel experience packages
+                            </span>
+                        </h2>
+                    </div>
+                    <p class="w-full max-w-101 text-white lg:text-lg/6">
+                        Enjoy curated itineraries, transparent pricing, and
+                        24/7 assistance from local experts who truly care.
+                    </p>
+                </div>
+                <div class="h-auto overflow-x-auto lg:overflow-visible">
+                    <table class="top-experiences-table w-full border-y border-white/20 text-white xl:text-xl/6.5">
+                        <tbody>
+                            <tr class="group">
+                                <td>Santorini Sunset Cruise</td>
+                                <td>Romantic, Scenic</td>
+                                <td>4 Days · Greece</td>
+                                <td class="relative hidden w-full min-w-67 lg:table-cell">
+                                    <div
+                                        class="absolute top-1/2 left-1/2 z-10 h-24 w-40 -translate-1/2 opacity-0 duration-300 group-hover:opacity-100 before:absolute before:-top-1 before:-right-2 before:bottom-1 before:left-4 before:-z-1 before:rounded-xl before:bg-white/20 xl:h-40 xl:w-62.5 xl:before:rounded-3xl">
+                                        <div class="h-full w-full -rotate-6 overflow-hidden rounded-xl xl:rounded-3xl">
+                                            <img src="assets/images/top-experiences1.png" alt="top-experiences"
+                                                class="h-full w-full object-cover" />
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a href="/package-details.html"
+                                        class="group-hover:text-blue grid size-8 shrink-0 place-content-center rounded-full bg-white/20 text-white group-hover:bg-white">
+                                        <i data-lucide="move-up-right"
+                                            class="size-5.5 shrink-0 pl-px transition duration-300 group-hover:rotate-45">
+                                        </i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr class="group">
+                                <td>Kenya Safari Adventure</td>
+                                <td>Wildlife, Luxury</td>
+                                <td>7 Days · Kenya</td>
+                                <td class="relative hidden w-full min-w-67 lg:table-cell">
+                                    <div
+                                        class="absolute top-1/2 left-1/2 z-10 h-24 w-40 -translate-1/2 opacity-0 duration-300 group-hover:opacity-100 before:absolute before:-top-1 before:-right-2 before:bottom-1 before:left-4 before:-z-1 before:rounded-xl before:bg-white/20 xl:h-40 xl:w-62.5 xl:before:rounded-3xl">
+                                        <div class="h-full w-full -rotate-6 overflow-hidden rounded-xl xl:rounded-3xl">
+                                            <img src="assets/images/top-experiences2.png" alt="top-experiences"
+                                                class="h-full w-full object-cover" />
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a href="/package-details.html"
+                                        class="group-hover:text-blue grid size-8 shrink-0 place-content-center rounded-full bg-white/20 text-white group-hover:bg-white">
+                                        <i data-lucide="move-up-right"
+                                            class="size-5.5 shrink-0 pl-px transition duration-300 group-hover:rotate-45">
+                                        </i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr class="group">
+                                <td>Bali Yoga Retreat</td>
+                                <td>Wellness, Solo</td>
+                                <td>5 Days · Indonesia</td>
+                                <td class="relative hidden w-full min-w-67 lg:table-cell">
+                                    <div
+                                        class="absolute top-1/2 left-1/2 z-10 h-24 w-40 -translate-1/2 opacity-0 duration-300 group-hover:opacity-100 before:absolute before:-top-1 before:-right-2 before:bottom-1 before:left-4 before:-z-1 before:rounded-xl before:bg-white/20 xl:h-40 xl:w-62.5 xl:before:rounded-3xl">
+                                        <div class="h-full w-full -rotate-6 overflow-hidden rounded-xl xl:rounded-3xl">
+                                            <img src="assets/images/top-experiences3.jpg" alt="top-experiences"
+                                                class="h-full w-full object-cover" />
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a href="/package-details.html"
+                                        class="group-hover:text-blue grid size-8 shrink-0 place-content-center rounded-full bg-white/20 text-white group-hover:bg-white">
+                                        <i data-lucide="move-up-right"
+                                            class="size-5.5 shrink-0 pl-px transition duration-300 group-hover:rotate-45">
+                                        </i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr class="group">
+                                <td>Iceland Northern Lights</td>
+                                <td>Adventure, Nature</td>
+                                <td>6 Days · Iceland</td>
+                                <td class="relative hidden w-full min-w-67 lg:table-cell">
+                                    <div
+                                        class="absolute top-1/2 left-1/2 z-10 h-24 w-40 -translate-1/2 opacity-0 duration-300 group-hover:opacity-100 before:absolute before:-top-1 before:-right-2 before:bottom-1 before:left-4 before:-z-1 before:rounded-xl before:bg-white/20 xl:h-40 xl:w-62.5 xl:before:rounded-3xl">
+                                        <div class="h-full w-full -rotate-6 overflow-hidden rounded-xl xl:rounded-3xl">
+                                            <img src="assets/images/top-experiences4.png" alt="top-experiences"
+                                                class="h-full w-full object-cover" />
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a href="/package-details.html"
+                                        class="group-hover:text-blue grid size-8 shrink-0 place-content-center rounded-full bg-white/20 text-white group-hover:bg-white">
+                                        <i data-lucide="move-up-right"
+                                            class="size-5.5 shrink-0 pl-px transition duration-300 group-hover:rotate-45">
+                                        </i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="container overflow-hidden py-12 lg:py-20">
+            <div class="mx-auto mb-8 w-full max-w-151 space-y-4 text-center lg:mb-12">
+                <span
+                    class="bg-primary/10 text-primary inline-block rounded-full px-3 py-1.5 text-sm lg:px-4 lg:py-2.5 lg:text-lg/6">
+                    Testimonials
+                </span>
+
+                <h2 class="w-full text-2xl font-medium text-black sm:text-3xl lg:text-4xl/11 xl:text-5xl/16">
+                    Rated 5
+                    <span class="font-playfair italic"> stars </span>
+                    by hundreds of
+                    <span class="font-playfair italic">
+                        happy travelers
+                    </span>
+                </h2>
+            </div>
+
+            <div class="flex flex-col justify-between gap-4 sm:gap-6 lg:flex-row lg:gap-8" x-data="testimonials()"
+                x-init="initSwipers()">
+                <div class="testimonial-img-swiper lg:w-124 xl:w-168">
+                    <div class="swiper-wrapper">
+                        <template x-for="(item, index) in testimonials">
+                            <div class="swiper-slide" key="item.id">
+                                <div class="h-60 overflow-hidden rounded-3xl lg:h-116">
+                                    <img :src="item.image" alt="Quote" class="h-full w-full object-cover" />
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+
+                <div class="testimonial-swiper overflow-hidden lg:ml-auto lg:w-208">
+                    <div class="swiper-wrapper">
+                        <template x-for="(item, index) in testimonials">
+                            <div class="swiper-slide" key="item.id">
+                                <div
+                                    class="shadow-4xl border-gray-light flex flex-col items-start rounded-3xl border bg-white p-4 text-black sm:p-6 lg:p-8">
+                                    <img src="assets/images/quote.svg" alt="Quote" class="h-16 w-auto" />
+                                    <div class="mt-2.5 mb-4 flex gap-4 lg:mt-6 lg:mb-8">
+                                        <i data-lucide="star" class="text-yellow fill-yellow size-5 shrink-0"></i>
+                                        <i data-lucide="star" class="text-yellow fill-yellow size-5 shrink-0"></i>
+                                        <i data-lucide="star" class="text-yellow fill-yellow size-5 shrink-0"></i>
+                                        <i data-lucide="star" class="text-yellow fill-yellow size-5 shrink-0"></i>
+                                    </div>
+                                    <p x-text="item.message"></p>
+                                    <h4 class="mt-6 line-clamp-4 inline-flex border-t border-black pt-4 sm:mt-8 lg:mt-12"
+                                        x-text="item.name"></h4>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                    <div class="relative z-5 mt-5 flex justify-center gap-2 lg:-mt-10 lg:justify-start">
+                        <button type="button"
+                            class="testimonial-button-prev bg-gray-light text-gray grid size-10 place-content-center rounded-full ring-[1.5px] ring-black/4 transition ring-inset hover:text-black">
+                            <i data-lucide="chevron-left" class="size-6.5"></i>
+                        </button>
+                        <button type="button"
+                            class="testimonial-button-next bg-gray-light text-gray grid size-10 place-content-center rounded-full ring-[1.5px] ring-black/4 transition ring-inset hover:text-black">
+                            <i data-lucide="chevron-right" class="size-6.5"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="bg-[radial-gradient(50%_190.38%_at_55.72%_50%,_rgba(0,117,149,0.1)_0%,_rgba(255,255,255,0.1)_100%)] py-12 lg:py-20">
+            <div class="container">
+                <div class="mb-8 flex flex-wrap items-start justify-between gap-4 lg:mb-12">
+                    <h2 class="w-full max-w-185.75 text-2xl font-medium text-black sm:text-[32]/11 lg:text-4xl/11">
+                        Featured articles
+                        <span class="font-playfair italic">this week</span>
+                    </h2>
+                    <a href="/blog.html" class="btn btn-primary">
+                        View more
+                        <i data-lucide="move-up-right"></i>
+                    </a>
+                </div>
+                <div class="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+                    <div class="flex gap-4 xl:gap-6">
+                        <div class="h-20 w-20 shrink-0 overflow-hidden rounded-2xl md:h-35 md:w-35 2xl:w-50">
+                            <img src="assets/images/featured-articles1.jpg" alt="featured-articles"
+                                class="h-full w-full object-cover" />
+                        </div>
+                        <div class="space-y-1.5 md:space-y-4">
+                            <span
+                                class="text-red bg-red/10 inline-block rounded-full px-2.5 py-1.5 text-xs/4 font-semibold lg:px-4 lg:text-sm/4.5">
+                                Cultural Experiences
+                            </span>
+                            <h3 class="block text-lg font-medium text-black transition hover:opacity-70 lg:text-xl/6.5">
+                                <a href="/blog-details.html" class="line-clamp-2">
+                                    The Art of Letting Go: Ganga Aarti in
+                                    Varanasi
+                                </a>
+                            </h3>
+                            <div class="flex flex-wrap gap-4 text-sm/4.5 font-semibold">
+                                <span>April 10, 2025</span>
+                                <span class="inline-flex gap-2">
+                                    <i data-lucide="clock" class="size-4.5"></i>
+                                    5 min
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 xl:gap-6">
+                        <div class="h-20 w-20 shrink-0 overflow-hidden rounded-2xl md:h-35 md:w-35 2xl:w-50">
+                            <img src="assets/images/featured-articles2.jpg" alt="featured-articles"
+                                class="h-full w-full object-cover" />
+                        </div>
+                        <div class="space-y-1.5 md:space-y-4">
+                            <span
+                                class="text-red bg-red/10 inline-block rounded-full px-2.5 py-1.5 text-xs/4 font-semibold lg:px-4 lg:text-sm/4.5">
+                                Cultural Experiences
+                            </span>
+                            <h3 class="block text-lg font-medium text-black transition hover:opacity-70 lg:text-xl/6.5">
+                                <a href="/blog-details.html" class="line-clamp-2">
+                                    A Day in a Japanese Machiya House
+                                </a>
+                            </h3>
+                            <div class="flex flex-wrap gap-4 text-sm/4.5 font-semibold">
+                                <span>April 10, 2025</span>
+                                <span class="inline-flex gap-2">
+                                    <i data-lucide="clock" class="size-4.5"></i>
+                                    5 min
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 xl:gap-6">
+                        <div class="h-20 w-20 shrink-0 overflow-hidden rounded-2xl md:h-35 md:w-35 2xl:w-50">
+                            <img src="assets/images/featured-articles3.jpg" alt="featured-articles"
+                                class="h-full w-full object-cover" />
+                        </div>
+                        <div class="space-y-1.5 md:space-y-4">
+                            <span
+                                class="text-red bg-red/10 inline-block rounded-full px-2.5 py-1.5 text-xs/4 font-semibold lg:px-4 lg:text-sm/4.5">
+                                Wellness Journeys
+                            </span>
+                            <h3 class="block text-lg font-medium text-black transition hover:opacity-70 lg:text-xl/6.5">
+                                <a href="/blog-details.html" class="line-clamp-2">
+                                    Detox & Digital Silence: My 5-Day
+                                    Retreat in Chiang Mai
+                                </a>
+                            </h3>
+                            <div class="flex flex-wrap gap-4 text-sm/4.5 font-semibold">
+                                <span>April 10, 2025</span>
+                                <span class="inline-flex gap-2">
+                                    <i data-lucide="clock" class="size-4.5"></i>
+                                    5 min
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="py-12 lg:py-20">
+            <div class="container flex flex-col justify-between gap-10 lg:flex-row">
+                <div class="space-y-4 lg:space-y-6">
+                    <h2
+                        class="w-full max-w-185.75 text-2xl font-medium text-black sm:text-3xl lg:text-4xl/11 xl:text-5xl/16">
+                        Frequently Asked Questions
+                    </h2>
+                    <p class="text-gray-dark w-full max-w-153.5 lg:text-lg/6">
+                        Still have questions? Our travel experts are here to
+                        make your journey smooth, from booking to boarding.
+                    </p>
+                    <a href="/faqs.html" class="btn btn-primary">
+                        View more
+                        <i data-lucide="move-up-right"></i>
+                    </a>
+                </div>
+                <div class="w-full space-y-4 lg:max-w-175" x-data="{ active: 1 }">
+                    <div x-data="{
+                                id: 1,
+                                get expanded() {
+                                    return this.active === this.id
+                                },
+                                set expanded(value) {
+                                    this.active = value ? this.id : null
+                                },
+                            }" role="region" class="border-gray-light shadow-3xl rounded-3xl border-2"
+                        :class="expanded  ?  'bg-primary text-white'  :  'bg-white text-black'">
+                        <button type="button" x-on:click="expanded = !expanded" :aria-expanded="expanded"
+                            class="flex w-full items-center justify-between gap-2 p-3.5 text-left text-lg/6 font-medium transition outline-none lg:p-5 lg:text-xl/6 xl:p-6">
+                            <span class="flex items-center gap-2">
+                                <span class="text-3xl font-semibold sm:text-[40px]/13"
+                                    :class="expanded  ?  'text-white/50'  :  'text-primary/30'">
+                                    01
+                                </span>
+                                <span> How do I make a booking? </span>
+                            </span>
+                            <span class="grid size-8 shrink-0 place-content-center rounded-full"
+                                :class="expanded  ?  'text-white bg-white/10'  :  'text-primary bg-primary/10'">
+                                <i data-lucide="move-up-right" class="size-5.5 shrink-0 transition duration-300"
+                                    :class="expanded  ?  'rotate-0'  :  'rotate-90'"></i>
+                            </span>
+                        </button>
+                        <div x-show="expanded" class="relative -top-1 sm:-top-2" x-collapse.duration.400ms>
+                            <p class="px-4 pb-3 sm:px-6 sm:pb-4 lg:text-lg/6">
+                                You can book directly through our website by
+                                selecting your destination, dates, and
+                                preferences. Once confirmed, you’ll receive
+                                a booking summary and invoice via email.
+                            </p>
+                        </div>
+                    </div>
+                    <div x-data="{
+                                id: 2,
+                                get expanded() {
+                                    return this.active === this.id
+                                },
+                                set expanded(value) {
+                                    this.active = value ? this.id : null
+                                },
+                            }" role="region" class="border-gray-light shadow-3xl rounded-3xl border-2"
+                        :class="expanded  ?  'bg-primary text-white'  :  'bg-white text-black'">
+                        <button type="button" x-on:click="expanded = !expanded" :aria-expanded="expanded"
+                            class="flex w-full items-center justify-between gap-2 p-3.5 text-left text-lg/6 font-medium transition outline-none lg:p-5 lg:text-xl/6 xl:p-6">
+                            <span class="flex items-center gap-2">
+                                <span class="text-3xl font-semibold sm:text-[40px]/13"
+                                    :class="expanded  ?  'text-white/50'  :  'text-primary/30'">
+                                    02
+                                </span>
+                                <span>What payment methods do you
+                                    accept?</span>
+                            </span>
+                            <span class="grid size-8 shrink-0 place-content-center rounded-full"
+                                :class="expanded  ?  'text-white bg-white/10'  :  'text-primary bg-primary/10'">
+                                <i data-lucide="move-up-right" class="size-5.5 shrink-0 transition duration-300"
+                                    :class="expanded  ?  'rotate-0!'  :  'rotate-90'"></i>
+                            </span>
+                        </button>
+                        <div x-show="expanded" class="relative -top-1 sm:-top-2" x-collapse.duration.400ms>
+                            <p class="px-4 pb-3 sm:px-6 sm:pb-4 lg:text-lg/6">
+                                You can book directly through our website by
+                                selecting your destination, dates, and
+                                preferences. Once confirmed, you’ll receive
+                                a booking summary and invoice via email.
+                            </p>
+                        </div>
+                    </div>
+                    <div x-data="{
+                                id: 3,
+                                get expanded() {
+                                    return this.active === this.id
+                                },
+                                set expanded(value) {
+                                    this.active = value ? this.id : null
+                                },
+                            }" role="region" class="border-gray-light shadow-3xl rounded-3xl border-2"
+                        :class="expanded  ?  'bg-primary text-white'  :  'bg-white text-black'">
+                        <button type="button" x-on:click="expanded = !expanded" :aria-expanded="expanded"
+                            class="flex w-full items-center justify-between gap-2 p-3.5 text-left text-lg/6 font-medium transition outline-none lg:p-5 lg:text-xl/6 xl:p-6">
+                            <span class="flex items-center gap-2">
+                                <span class="text-3xl font-semibold sm:text-[40px]/13"
+                                    :class="expanded  ?  'text-white/50'  :  'text-primary/30'">
+                                    03
+                                </span>
+                                <span>Can I hold a booking before
+                                    paying?</span>
+                            </span>
+                            <span class="grid size-8 shrink-0 place-content-center rounded-full"
+                                :class="expanded  ?  'text-white bg-white/10'  :  'text-primary bg-primary/10'">
+                                <i data-lucide="move-up-right" class="size-5.5 shrink-0 transition duration-300"
+                                    :class="expanded  ?  'rotate-0!'  :  'rotate-90'"></i>
+                            </span>
+                        </button>
+                        <div x-show="expanded" class="relative -top-1 sm:-top-2" x-collapse.duration.400ms>
+                            <p class="px-4 pb-3 sm:px-6 sm:pb-4 lg:text-lg/6">
+                                You can book directly through our website by
+                                selecting your destination, dates, and
+                                preferences. Once confirmed, you’ll receive
+                                a booking summary and invoice via email.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="relative bg-[url('/assets/images/cta-banner.jpg')] bg-cover bg-center bg-no-repeat py-16 lg:py-47.5">
+            <span class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/60 to-black/40"></span>
+            <div class="relative container text-center text-white">
+                <div class="mb-8 space-y-4 lg:mb-12">
+                    <h2 class="w-full text-2xl font-medium sm:text-3xl lg:text-4xl/11 xl:text-5xl/16">
+                        Let’s Turn
+                        <span class="font-playfair italic">
+                            Your Dream Trip
+                        </span>
+                        Into a
+                        <span class="font-playfair italic">Real Adventure</span>
+                    </h2>
+                    <p class="mx-auto w-full max-w-186 lg:text-lg/6">
+                        Whether you're planning a solo escape, a romantic
+                        getaway, or a group expedition — we’ll make sure
+                        every detail is effortless and unforgettable.
+                    </p>
+                </div>
+                <a href="/persoinalised-trip.html" class="btn">
+                    Plan My Trip
+                    <i data-lucide="move-up-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer
+        class="after:from-blue after:to-blue/80 relative mt-auto bg-[url('/assets/images/footer-banner.jpg')] bg-cover bg-no-repeat text-white after:absolute after:inset-0 after:bg-gradient-to-l sm:after:from-40%">
+        <div class="relative z-10 container">
+            <div class="flex flex-col justify-between gap-10 pt-12 lg:pt-16 xl:flex-row">
+                <div class="flex flex-col justify-between gap-8 sm:flex-row lg:gap-10">
+                    <div>
+                        <a href="/" class="inline-flex shrink-0">
+                            <img src="assets/images/logo.svg" alt="logo" class="h-8 w-auto sm:h-9.5" />
+                        </a>
+                        <p class="mt-2 mb-4 text-sm/4.5 font-medium lg:mb-6">
+                            Travel beyond destinations
+                        </p>
+
+                        <div class="flex items-center gap-4">
+                            <a href="tel:+441512223344" target="_blank"
+                                class="grid size-7.5 place-content-center rounded-full bg-white/20 text-white transition hover:opacity-80">
+                                <i data-lucide="phone" class="size-4.5 shrink-0"></i>
+                                <span class="sr-only">Call</span>
+                            </a>
+                            <a href="https://instagram.com" target="_blank"
+                                class="grid size-7.5 place-content-center rounded-full bg-white/20 text-white transition hover:opacity-80">
+                                <i data-lucide="instagram" class="size-4.5 shrink-0"></i>
+                                <span class="sr-only">Instagram</span>
+                            </a>
+                            <a href="mailto:support@example.com" target="_blank"
+                                class="grid size-7.5 place-content-center rounded-full bg-white/20 text-white transition hover:opacity-80">
+                                <i data-lucide="message-circle" class="size-4.5 shrink-0"></i>
+                                <span class="sr-only">Message</span>
+                            </a>
+                            <a href="https://www.facebook.com" target="_blank"
+                                class="grid size-7.5 place-content-center rounded-full bg-white/20 text-white transition hover:opacity-80">
+                                <i data-lucide="facebook" class="size-4.5 shrink-0"></i>
+                                <span class="sr-only">Facebook</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="w-full space-y-5 sm:max-w-93 lg:space-y-6 xl:hidden">
+                        <h2 class="text-2xl/6">Company</h2>
+                        <div class="space-y-4">
+                            <form class="relative">
+                                <input type="text"
+                                    class="w-full rounded-full border-0! bg-white py-3 pr-14 pl-4 text-base/5 text-black ring-0! outline-none! placeholder:text-[#848381]"
+                                    placeholder="Enter your email" />
+                                <button type="submit"
+                                    class="group absolute top-1/2 right-4 -translate-y-1/2 text-black">
+                                    <i data-lucide="move-up-right"
+                                        class="size-8 shrink-0 transition duration-300 group-hover:rotate-45"></i>
+                                </button>
+                            </form>
+                            <p class="text-sm/4.5">
+                                By subscribing you agree to with our&nbsp;
+                                <a href="privacy-policy.html" class="font-medium underline hover:no-underline">
+                                    Privacy Policy
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="grid w-full grid-cols-2 gap-5 gap-y-10 md:flex md:justify-between lg:gap-8 xl:w-auto xl:justify-center 2xl:gap-14">
+                    <div class="space-y-3.5 sm:space-y-5 lg:space-y-6 2xl:min-w-33.5">
+                        <h2 class="text-xl/6">Company</h2>
+                        <div class="flex flex-col items-start gap-2 sm:gap-3 lg:gap-4">
+                            <a href="/about-us.html" class="footer-links">About</a>
+                            <a href="/contact-us.html" class="footer-links">
+                                Contact
+                            </a>
+                            <a href="/blog.html" class="footer-links">
+                                Blog
+                            </a>
+                            <a href="/faqs.html" class="footer-links">
+                                FAQs
+                            </a>
+                            <a href="/userside-profile.html" class="footer-links">
+                                My profile
+                            </a>
+                        </div>
+                    </div>
+                    <div class="space-y-3.5 sm:space-y-5 lg:space-y-6 2xl:min-w-33.5">
+                        <h2 class="text-xl/6">Countries</h2>
+                        <div class="flex flex-col items-start gap-2 sm:gap-3 lg:gap-4">
+                            <a href="/destination-packages.html" class="footer-links">
+                                Asia
+                            </a>
+                            <a href="/destination-packages.html" class="footer-links">
+                                Europe
+                            </a>
+                            <a href="/destination-packages.html" class="footer-links">
+                                North America
+                            </a>
+                            <a href="/destination-packages.html" class="footer-links">
+                                Africa
+                            </a>
+                            <a href="/destination-packages.html" class="footer-links">
+                                Oceania
+                            </a>
+                        </div>
+                    </div>
+                    <div class="space-y-3.5 sm:space-y-5 lg:space-y-6">
+                        <h2 class="text-xl/6">Packages</h2>
+                        <div class="flex flex-col items-start gap-2 sm:gap-3 lg:gap-4">
+                            <a href="/tours-packages.html" class="footer-links">
+                                Bali uncovered
+                            </a>
+                            <a href="/tours-packages.html" class="footer-links">
+                                Tokyo & Kyoto Explorer
+                            </a>
+                            <a href="/tours-packages.html" class="footer-links">
+                                Swiss Alps Lakes Getaway
+                            </a>
+                            <a href="/tours-packages.html" class="footer-links">
+                                Maldives Experience
+                            </a>
+                            <a href="/tours-packages.html" class="footer-links">
+                                Morocco Desert & Medina
+                            </a>
+                            <a href="/tours-packages.html" class="footer-links">
+                                New York Roadtrip
+                            </a>
+                        </div>
+                    </div>
+                    <div class="space-y-3.5 sm:space-y-5 lg:space-y-6 2xl:min-w-33.5">
+                        <h2 class="text-xl/6">Quick Links</h2>
+                        <div class="flex flex-col items-start gap-2 sm:gap-3 lg:gap-4">
+                            <a href="/destination.html" class="footer-links">
+                                Destinations
+                            </a>
+                            <a href="/experiences.html" class="footer-links">
+                                Experiences
+                            </a>
+                            <a href="/tours-packages.html" class="footer-links">
+                                Tours & Packages
+                            </a>
+                            <a href="/persoinalised-trip.html" class="footer-links">
+                                Personalized trip
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden w-full max-w-93 space-y-5 lg:space-y-6 xl:block">
+                    <h2 class="text-2xl/6">Newsletter</h2>
+                    <div class="space-y-4">
+                        <form class="relative">
+                            <input type="text"
+                                class="w-full rounded-full border-0! bg-white py-3 pr-14 pl-4 text-base/5 text-black ring-0! outline-none! placeholder:text-[#848381]"
+                                placeholder="Enter your email" />
+                            <button type="submit" class="group absolute top-1/2 right-4 -translate-y-1/2 text-black">
+                                <i data-lucide="move-up-right"
+                                    class="size-8 shrink-0 transition duration-300 group-hover:rotate-45"></i>
+                            </button>
+                        </form>
+                        <p class="text-sm/4.5">
+                            By subscribing you agree to with our&nbsp;
+                            <a href="privacy-policy.html" class="font-medium underline hover:no-underline">
+                                Privacy Policy
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col-reverse items-center justify-between gap-5 py-7.5 md:flex-row">
+                <div class="text-center text-base" x-data="{ currentYear: new Date().getFullYear() }">
+                    © <span x-text="currentYear"></span>&nbsp;Wayfare. All
+                    rights reserved.
+                </div>
+                <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:flex-nowrap">
+                    <a href="/terms-conditions.html" class="footer-links">
+                        Terms & conditions
+                    </a>
+                    <a href="/privacy-policy.html" class="footer-links">
+                        Privacy Policy
+                    </a>
+                    <a href="/refund-policy.html" class="footer-links">
+                        Refund Policy
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to top button -->
+    <div x-data="{
+               showButton: false,
+
+            updateProgress() {
+                this.showButton = window.scrollY > 300;
+            },
+
+            scrollToTop() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+            }" @scroll.window="updateProgress">
+        <button type="button"
+            class="bg-primary shadow-4xl group invisible fixed right-5 bottom-5 z-50 flex size-10 translate-y-4 cursor-pointer items-center justify-center rounded-full opacity-0 duration-300 sm:size-12"
+            :class="{ 'visible opacity-100 translate-y-0!': showButton }" @click="scrollToTop()">
+            <i data-lucide="arrow-up"
+                class="absolute top-1/2 left-1/2 size-6! shrink-0 -translate-x-1/2 -translate-y-1/2 text-white duration-300 group-hover:-mt-px"></i>
+        </button>
+    </div>
+
+    <script src="assets/js/lucide.min.js"></script>
+    <script src="assets/js/flatpickr.js"></script>
+    <script src="assets/js/alpine.min.js" defer></script>
+    <script src="assets/js/collapse-cdn.min.js"></script>
+    <script src="assets/js/swiper-bundle.min.js"></script>
+
+    <script>
+        // Lucide icon
+        lucide.createIcons()
+
+        // Horo banner swiper
+        var swiper = new Swiper('.Hero-swiper', {
+            slidesPerView: 'auto',
+            spaceBetween: 0,
+            speed: 1000,
+            effect: 'fade',
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+        })
+
+        // Global Destinations swiper
+        var swiper = new Swiper('.global-destinations-swiper', {
+            slidesPerView: 'auto',
+            spaceBetween: 16,
+            speed: 1000,
+            centeredSlides: false, // Ensures slides align to the start
+            slidesPerGroup: 1,
+            navigation: {
+                nextEl: '.global-destinations-button-next',
+                prevEl: '.global-destinations-button-prev',
+            },
+            breakpoints: {
+                1024: {
+                    spaceBetween: 32,
+                },
+            },
+        })
+
+        // Popular Experiences swiper
+        var swiper = new Swiper('.popular-experiences-swiper', {
+            slidesPerView: 'auto',
+            spaceBetween: 16,
+            speed: 1000,
+            loop: true,
+            autoplay: {
+                delay: 2000,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                1568: {
+                    slidesPerView: 4.2,
+                    spaceBetween: 32,
+                },
+                1280: {
+                    slidesPerView: 3.8,
+                },
+                1024: {
+                    slidesPerView: 3.2,
+                    spaceBetween: 24,
+                },
+                768: {
+                    slidesPerView: 2.4,
+                },
+                500: {
+                    slidesPerView: 1.9,
+                    spaceBetween: 10,
+                },
+                320: {
+                    slidesPerView: 1,
+                },
+            },
+        })
+
+        // Upcoming tours swiper
+        var swiper = new Swiper('.upcoming-tours-swiper', {
+            slidesPerView: 'auto',
+            spaceBetween: 16,
+            speed: 1000,
+            navigation: {
+                nextEl: '.upcoming-tours-button-next',
+                prevEl: '.upcoming-tours-button-prev',
+            },
+            breakpoints: {
+                1568: {
+                    slidesPerView: 4.2,
+                    spaceBetween: 32,
+                },
+                1280: {
+                    slidesPerView: 3.8,
+                },
+                1024: {
+                    slidesPerView: 3.1,
+                    spaceBetween: 20,
+                },
+                768: {
+                    slidesPerView: 2.4,
+                },
+                500: {
+                    slidesPerView: 1.7,
+                    spaceBetween: 10,
+                },
+                320: {
+                    slidesPerView: 1,
+                },
+            },
+        })
+
+        function testimonials() {
+            return {
+                testimonials: [
+                    {
+                        id: 1,
+                        image: 'assets/images/popular-experiences8.png',
+                        message:
+                            '"Thanks to [Agency Name], I got to explore off-the-beaten-path locations that I would never have found on my own. Their guides and support made the adventure safe, fun, and memorable!"',
+                        name: 'Anthony Brown',
+                    },
+                    {
+                        id: 2,
+                        image: 'assets/images/activity-6.jpg',
+                        message:
+                            '"Thanks to [Agency Name], I got to explore off-the-beaten-path locations that I would never have found on my own. Their guides and support made the adventure safe, fun, and memorable!"',
+                        name: 'Anthony Brown',
+                    },
+                    {
+                        id: 3,
+                        image: 'assets/images/stay-local-card.png',
+                        message:
+                            '"Thanks to [Agency Name], I got to explore off-the-beaten-path locations that I would never have found on my own. Their guides and support made the adventure safe, fun, and memorable!"',
+                        name: 'Anthony Brown',
+                    },
+                    {
+                        id: 4,
+                        image: 'assets/images/contact-img.jpg',
+                        message:
+                            '"Thanks to [Agency Name], I got to explore off-the-beaten-path locations that I would never have found on my own. Their guides and support made the adventure safe, fun, and memorable!"',
+                        name: 'Anthony Brown',
+                    },
+                ],
+
+                initSwipers() {
+                    this.$nextTick(() => {
+                        lucide.createIcons()
+                        new Swiper('.testimonial-swiper', {
+                            spaceBetween: 24,
+                            slidesPerView: 'auto',
+                            speed: 1000,
+                            autoplay: {
+                                delay: 1500,
+                                disableOnInteraction: true,
+                            },
+                            loop: true,
+                            navigation: {
+                                nextEl: '.testimonial-button-next',
+                                prevEl: '.testimonial-button-prev',
+                            },
+                            breakpoints: {
+                                1568: {
+                                    slidesPerView: 2,
+                                    spaceBetween: 32,
+                                },
+                                1024: {
+                                    slidesPerView: 1,
+                                    spaceBetween: 32,
+                                },
+                                640: {
+                                    slidesPerView: 2,
+                                },
+                            },
+                        })
+
+                        new Swiper('.testimonial-img-swiper', {
+                            spaceBetween: 16,
+                            centeredSlides: true,
+                            slidesPerView: 1,
+                            effect: 'fade',
+                            speed: 1000,
+                            autoplay: {
+                                delay: 1500,
+                                disableOnInteraction: true,
+                            },
+                            loop: true,
+                            slidesPerView: 'auto',
+                            allowTouchMove: false,
+                        })
+                    })
+                },
+            }
+        }
+
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('select', () => ({
+                open: false,
+                from: '',
+                tripDuration: '3-5 Days',
+
+                toggle() {
+                    this.open = !this.open
+                },
+
+                setFrom(val) {
+                    this.from = val
+                    this.open = false
+                },
+                setTripDuration(val) {
+                    this.tripDuration = val
+                    this.open = false
+                },
+            }))
+        })
+
+        function datepicker() {
+            return {
+                value: '',
+                init() {
+                    let picker = flatpickr(this.$refs.picker, {
+                        dateFormat: 'd M, Y',
+                        defaultDate: new Date(), // <-- Set today as default
+                        onChange: (selectedDates, dateString) => {
+                            this.value = dateString
+                        },
+                        appendTo: this.$refs.picker.parentElement,
+                        static: true,
+                        positionElement: this.$refs.picker,
+                        position: 'below',
+                    })
+
+                    // Set initial value in Alpine when initialized
+                    this.value = picker.input.value
+                },
+            }
+        }
+
+        function mainContent() {
+            return {
+                showHeaderMenu: false,
+            }
+        }
+    </script>
+    <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "name": "Home | Wayfare",
+                "url": "https://wayfare-html.vercel.app/",
+                "description": "Discover amazing destinations, exclusive travel deals, and effortless booking. Plan your perfect vacation and explore the world with ease!",
+                "inLanguage": "en",
+                "image": "https://wayfare-html.vercel.app/assets/images/logo.png",
+                "breadcrumb": {
+                    "@type": "BreadcrumbList",
+                    "itemListElement": [
+                        {
+                            "@type": "ListItem",
+                            "position": 1,
+                            "name": "Home",
+                            "item": "https://wayfare-html.vercel.app/"
+                        }
+                    ]
+                }
+            }
+        </script>
+</body>
+
+</html>
